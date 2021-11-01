@@ -22,12 +22,12 @@ class Login{
         panel.setLayout( grid );
         panel.setPreferredSize( new Dimension( w, h ) );
         panel.setBackground(Color.black);
-        initPanel();
+        initPanel( w , h );
     }
 
     //init on first run
     //these are only things that wont change
-    private void initPanel(){
+    private void initPanel( int w, int h ){
         JButton clearBtn = new JButton( "Clear" );
         clearBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
@@ -43,26 +43,25 @@ class Login{
         c.gridy = 0;
         idField.setPreferredSize( idFieldSize );
         panel.add( idField, c );
-
+        final int ww = w; final int hh = h;
         JButton enterBtn = new JButton( "Enter" );
         enterBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
                 if ( RestaurantManager.restaurant.checkAdminID( idField.getText() ) ){
                     System.out.println("Opening Admin Tables:" + idField.getText() );
                     RestaurantManager.restaurant.activeID = idField.getText();//set the active ID
-                    //RestaurantManager.admin = true;
-                    RestaurantManager.tablePage.updateAdminAccess( true ); //make add and remove visible
+                    
                     
                     panel.setVisible( false );
+                    RestaurantManager.tablePage = new TablePage( ww, hh );
                     RestaurantManager.tablePage.panel.setVisible(true);
-
+                    //RestaurantManager.tablePage = new TablePage( w, h );
                 } else if ( RestaurantManager.restaurant.checkID( idField.getText() ) ){
                     System.out.println("Opening User Tables:" + idField.getText() );
                     RestaurantManager.restaurant.activeID = idField.getText(); //set the active ID
-                    //RestaurantManager.admin = false;
-                    RestaurantManager.tablePage.updateAdminAccess( false ); //make add and remove invisible
-
+                    
                     panel.setVisible( false );
+                    RestaurantManager.tablePage = new TablePage( w, h );
                     RestaurantManager.tablePage.panel.setVisible(true);
                 }
                 idField.setText("");

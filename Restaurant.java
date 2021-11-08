@@ -11,11 +11,13 @@ class Restaurant{
     //TABLES
     ArrayList<Table> tables = new ArrayList<Table>();
     //MENU
-    ArrayList<Menu> menu = new ArrayList<Menu>();
+    ArrayList<Menu> menuList = new ArrayList<Menu>();
     //CURRENT USER's ID
     String activeID = "";
-
+    //Is it the first time running the software
+    boolean first;
     Restaurant(){ 
+        first = true;
         adminIDs.add( "1776" );
         IDs.add( "1234" );
         tables.add( new Table() );

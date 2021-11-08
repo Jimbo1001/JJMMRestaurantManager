@@ -10,6 +10,7 @@ class TablePage{
     JButton addBtn = new JButton( "Add Table" );
     JButton removeBtn = new JButton( "Remove Table" );
     JButton exitBtn  = new JButton( "Exit" );
+    JButton adminBtn = new JButton( "Admin" );
 
     GridBagLayout grid = new GridBagLayout();
     GridBagConstraints c = new GridBagConstraints();
@@ -77,7 +78,7 @@ class TablePage{
         panel.add( removeBtn, c );
         removeBtn.setVisible( RestaurantManager.admin );
 
-        
+        exitBtn.setPreferredSize( buttonSize );
         c.gridx = 0;
         c.gridy = RestaurantManager.restaurant.tables.size() + 3;
         panel.add( exitBtn, c );
@@ -114,5 +115,18 @@ class TablePage{
         c.gridx = 0;
         c.gridy = i + 3;
         panel.add( exitBtn, c );
+
+        adminBtn.setPreferredSize( buttonSize );
+        adminBtn.addActionListener( new ActionListener() {
+                public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.adminPage.panel.setVisible( true );
+                    panel.setVisible( false );
+                }
+            }
+        );
+        c.gridx = 0;
+        c.gridy = i + 4;
+        panel.add( adminBtn, c );
+        adminBtn.setVisible( RestaurantManager.admin );
     }
 }

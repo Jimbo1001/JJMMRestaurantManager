@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 class Menu{
     String name;
-    Menu(){
-        name = "Jimmy";
+    ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+    Menu( String name ){
+        this.name = name;
     }
 }

@@ -34,6 +34,7 @@ class ServerPage{
         c.gridx = 1;
         c.gridy = 0;
         panel.add( menuPanel, c );
+        //initMenuPanel( RestaurantManager.restaurant.menuList );
 
         JButton exit = new JButton("Exit");
         exit.addActionListener( new ActionListener() {

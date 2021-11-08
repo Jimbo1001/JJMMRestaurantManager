@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 class TablePage{
     
     JPanel panel = new JPanel();
+    JButton addBtn = new JButton( "Add Table" );
+    JButton removeBtn = new JButton( "Remove Table" );
     JButton exitBtn  = new JButton( "Exit" );
 
     GridBagLayout grid = new GridBagLayout();
@@ -21,6 +23,32 @@ class TablePage{
         panel.setBackground(Color.black);
         panel.setPreferredSize( new Dimension( w, h ) );
         
+        addBtn.addActionListener( new ActionListener(){
+            public void actionPerformed( ActionEvent e ){
+                RestaurantManager.restaurant.tables.add( new Table() );
+                draw();
+            }
+        });
+
+        removeBtn.addActionListener( new ActionListener(){
+            public void actionPerformed( ActionEvent e ){
+                if ( RestaurantManager.restaurant.tables.size() >= 0 ){
+                    RestaurantManager.restaurant.tables.remove( RestaurantManager.restaurant.tables.size() - 1);
+                    
+                    System.out.println( RestaurantManager.restaurant.tables.size() );
+                    draw();
+                }
+            }
+        });
+        
+        exitBtn.addActionListener( new ActionListener(){
+            public void actionPerformed( ActionEvent e ){
+                panel.setVisible( false );
+                RestaurantManager.login.panel.setVisible( true );
+                System.out.println("Exiting to login");
+            }
+        });
+
         draw();
         
     }
@@ -30,47 +58,26 @@ class TablePage{
         panel.repaint();
         panel.revalidate();
 
-        panel.setLayout( grid );
+        //panel.setLayout( grid );
 
         System.out.println( "Drawing tables \nAdmin access: " + RestaurantManager.admin + "\nTable amount: " + RestaurantManager.restaurant.tables.size() );
         
         
-        JButton addBtn = new JButton( "Add Table" );
+        
         addBtn.setPreferredSize( buttonSize );
-        addBtn.addActionListener( new ActionListener(){
-            public void actionPerformed( ActionEvent e ){
-                RestaurantManager.restaurant.tables.add( new Table() );
-            }
-        });
         c.gridx = 0;
         c.gridy = 0;
         panel.add( addBtn, c );
         addBtn.setVisible( RestaurantManager.admin );
 
-        JButton removeBtn = new JButton( "Remove Table" );
+        
         removeBtn.setPreferredSize( buttonSize );
-        removeBtn.addActionListener( new ActionListener(){
-            public void actionPerformed( ActionEvent e ){
-                if ( RestaurantManager.restaurant.tables.size() >= 0 ){
-                    RestaurantManager.restaurant.tables.remove( RestaurantManager.restaurant.tables.size() - 1);
-                    
-                    System.out.println( RestaurantManager.restaurant.tables.size() );
-                }
-                draw();
-            }
-        });
         c.gridx = 0;
         c.gridy = 1;
         panel.add( removeBtn, c );
         removeBtn.setVisible( RestaurantManager.admin );
 
-        exitBtn.addActionListener( new ActionListener(){
-            public void actionPerformed( ActionEvent e ){
-                panel.setVisible( false );
-                RestaurantManager.login.panel.setVisible( true );
-                System.out.println("Exiting to login");
-            }
-        });
+        
         c.gridx = 0;
         c.gridy = RestaurantManager.restaurant.tables.size() + 3;
         panel.add( exitBtn, c );

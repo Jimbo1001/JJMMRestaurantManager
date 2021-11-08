@@ -53,16 +53,15 @@ class Login{
                     
                     
                     panel.setVisible( false );
-                    RestaurantManager.tablePage = new TablePage( ww, hh );
                     RestaurantManager.tablePage.panel.setVisible(true);
-                    //RestaurantManager.tablePage = new TablePage( w, h );
+                    RestaurantManager.tablePage.draw();
                 } else if ( RestaurantManager.restaurant.checkID( idField.getText() ) ){
                     System.out.println("Opening User Tables:" + idField.getText() );
                     RestaurantManager.restaurant.activeID = idField.getText(); //set the active ID
                     
                     panel.setVisible( false );
-                    RestaurantManager.tablePage = new TablePage( w, h );
                     RestaurantManager.tablePage.panel.setVisible(true);
+                    RestaurantManager.tablePage.draw();
                 }
                 idField.setText("");
             }

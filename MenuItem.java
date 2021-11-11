@@ -25,12 +25,14 @@ class MenuItem {
     }
     
     public String toString() {
-        String s = "MENU NAME: " + name;
-        String results = "+";
+        String results = "MENU NAME: " + name;
+        results += "+";
         for (int i = 0; i < this.menuCustomizationItems.size(); i++) {
             results += " " + this.menuCustomizationItems.get(i);
+            if (i != this.menuCustomizationItems.size() - 1) {
+                results += ",";
+            }
         }
-        return s;
         return results;
     }
 }

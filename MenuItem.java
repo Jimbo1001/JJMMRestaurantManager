@@ -17,10 +17,12 @@ class MenuItem {
     }
     
     public String toString() {
+        String s = "MENU NAME: " + name;
         String results = "+";
         for (int i = 0; i < this.menuCustomizationItem.size; i++) {
             results += " " + this.menuCustomizationItem.get(i);
         }
+        return s;
         return results;
     }
 }

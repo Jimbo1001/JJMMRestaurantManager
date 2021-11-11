@@ -10,8 +10,8 @@ class Menu {
     
     public String toString() {
         String results = "+";
-        for (int i = 0; i < this.menuItem.size; i++) {
-            results += " " + this.menuItem.get(i);
+        for (int i = 0; i < this.menuItems.size(); i++) {
+            results += " " + this.menuItems.get(i);
         }
         return results;
     }

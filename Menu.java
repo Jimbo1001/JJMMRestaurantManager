@@ -9,10 +9,12 @@ class Menu {
     }
     
     public String toString() {
+        String s = "MENU NAME: " + name;
         String results = "+";
         for (int i = 0; i < this.menuItems.size(); i++) {
             results += " " + this.menuItems.get(i);
         }
+        return s;
         return results;
     }
 }

@@ -4,45 +4,44 @@ class Restaurant{
 
     //NAME
     String name;
-    //EMPLOYEE IDS
-    ArrayList<String> IDs = new ArrayList<String>();
-    //ADMIN IDS
-    ArrayList<String> adminIDs = new ArrayList<String>();
+    //EMPLOYEES
+    ArrayList<Employee> employees = new ArrayList<Employee>();
     //TABLES
     ArrayList<Table> tables = new ArrayList<Table>();
     //MENU
     ArrayList<Menu> menuList = new ArrayList<Menu>();
-    //CURRENT USER's ID
-    String activeID = "";
+    //CURRENT Employee using system
+    Employee activeEmployee = new Employee( null, null, false );
     //Is it the first time running the software
     boolean first;
     Restaurant(){ 
         first = true;
-        adminIDs.add( "1776" );
-        IDs.add( "1234" );
+        employees.add( new Employee( "Admin", "1776", true ) );
         tables.add( new Table() );
         name = null;
     }
-
-    public boolean checkAdminID( String s ){
-        System.out.println("input: " + s);
-        for (int i = 0; i < adminIDs.size(); i++){
-            if (adminIDs.get(i).equals(s)){
-                RestaurantManager.admin = true; //make admin true
+    
+    //returns true if there is an employee with this id
+    public boolean checkId( String id ){
+        for (int i = 0; i < employees.size(); i++){
+            if ( employees.get(i).id.equals( id ) ){
                 return true;
             }
         }
-        RestaurantManager.admin = false;       //make admin false
         return false;
     }
-
-    public boolean checkID( String s ){
-        System.out.println("input: " + s);
-        for (int i = 0; i < IDs.size(); i++){
-            if (IDs.get(i).equals(s)){
-                return true;
+    //returns the employee with the input id
+    //null if no employee with the input id
+    public Employee getEmployeeById( String id ){
+        for (int i = 0; i < employees.size(); i++){
+            if ( employees.get(i).equals( id ) ){
+                return employees.get(i);
             }
         }
-        return false;
+        return null;
+    }
+
+    public void setActiveEmployeeById( Employee ae ){
+        activeEmployee = ae;
     }
 }

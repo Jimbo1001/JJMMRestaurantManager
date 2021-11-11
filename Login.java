@@ -14,11 +14,12 @@ class Login{
 
     boolean verbose = false;
 
-    Dimension buttonSize  = new Dimension( 50, 50);
-    Dimension idFieldSize = new Dimension( 50, 50);
+    Dimension buttonSize;
+    Dimension idFieldSize;
 
     Login( int w, int h, boolean verbose ){
         this.verbose = verbose;
+        buttonSize = idFieldSize = new Dimension( (int)w/12, (int)h/12 );
         panel.setLayout( grid );
         panel.setPreferredSize( new Dimension( w, h ) );
         panel.setBackground(Color.black);
@@ -43,27 +44,17 @@ class Login{
         c.gridy = 0;
         idField.setPreferredSize( idFieldSize );
         panel.add( idField, c );
-        final int ww = w; final int hh = h;
+        //final int ww = w; final int hh = h;
         JButton enterBtn = new JButton( "Enter" );
         enterBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
-                if ( RestaurantManager.restaurant.checkAdminID( idField.getText() ) ){
-                    System.out.println("Opening Admin Tables:" + idField.getText() );
-                    RestaurantManager.restaurant.activeID = idField.getText();//set the active ID
-                    
-                    
+                String input = idField.getText();
+                if ( RestaurantManager.restaurant.checkId( input ) ){
+                    RestaurantManager.tablePage.panel.setVisible( true );
                     panel.setVisible( false );
-                    RestaurantManager.tablePage.panel.setVisible(true);
-                    RestaurantManager.tablePage.draw();
-                } else if ( RestaurantManager.restaurant.checkID( idField.getText() ) ){
-                    System.out.println("Opening User Tables:" + idField.getText() );
-                    RestaurantManager.restaurant.activeID = idField.getText(); //set the active ID
-                    
-                    panel.setVisible( false );
-                    RestaurantManager.tablePage.panel.setVisible(true);
                     RestaurantManager.tablePage.draw();
                 }
-                idField.setText("");
+                idField.setText( "" );
             }
         });
         c.gridx = 2;

@@ -33,7 +33,7 @@ class TablePage{
 
         removeBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
-                if ( RestaurantManager.restaurant.tables.size() >= 0 ){
+                if ( RestaurantManager.restaurant.tables.size() > 0 ){
                     RestaurantManager.restaurant.tables.remove( RestaurantManager.restaurant.tables.size() - 1);
                     
                     System.out.println( RestaurantManager.restaurant.tables.size() );
@@ -69,14 +69,12 @@ class TablePage{
         c.gridx = 0;
         c.gridy = 0;
         panel.add( addBtn, c );
-        addBtn.setVisible( RestaurantManager.admin );
 
         
         removeBtn.setPreferredSize( buttonSize );
         c.gridx = 0;
         c.gridy = 1;
         panel.add( removeBtn, c );
-        removeBtn.setVisible( RestaurantManager.admin );
 
         exitBtn.setPreferredSize( buttonSize );
         c.gridx = 0;
@@ -90,21 +88,7 @@ class TablePage{
 
             tableBtn.addActionListener( new ActionListener() {
                 public void actionPerformed( ActionEvent e ){
-                    if ( RestaurantManager.restaurant.tables.get(ii).open ){
-                        System.out.println( "Table is open" );
-                        //Set the tables id to the current users id
-                        RestaurantManager.restaurant.tables.get(ii).setID( RestaurantManager.restaurant.activeID );
-                        //set the table to closed
-                        RestaurantManager.restaurant.tables.get(ii).setOpen( false );
-                        RestaurantManager.serverPage.panel.setVisible( true );
-                        panel.setVisible( false );
-                    } else if ( RestaurantManager.restaurant.activeID.equals(RestaurantManager.restaurant.tables.get(ii).tableActiveID) ){
-                        System.out.println( "This is this users table" );
-                        RestaurantManager.serverPage.panel.setVisible( true );
-                        panel.setVisible( false );
-                    } else {
-                        System.out.println( "Table is not the current users" );
-                    }
+                    RestaurantManager.serverPage.panel.setVisible( true );
                 }
             });
 
@@ -127,6 +111,5 @@ class TablePage{
         c.gridx = 0;
         c.gridy = i + 4;
         panel.add( adminBtn, c );
-        adminBtn.setVisible( RestaurantManager.admin );
     }
 }

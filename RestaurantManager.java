@@ -43,13 +43,13 @@ class RestaurantManager{
         frame = new JFrame();
         frame.setLayout( grid);
         frame.setMinimumSize( new Dimension( w, h ) );
-        initScreens();
+        initPages();
         frame.pack();
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         frame.setVisible( true );
     }
 
-    public void initScreens(){
+    public void initPages(){
         c.gridx = 0;
         c.gridy = 0;
         frame.add( login.panel, c );
@@ -57,7 +57,7 @@ class RestaurantManager{
         c.gridx = 0;
         c.gridy = 0;
         tablePage.panel.setVisible( false );
-        frame.add( tablePage.panel, c);
+        frame.add( tablePage.panel, c );
 
         c.gridx = 0;
         c.gridy = 0;
@@ -66,7 +66,7 @@ class RestaurantManager{
 
         c.gridx = 0;
         c.gridy = 0;
-        serverPage.panel.setVisible( false );
+        adminPage.panel.setVisible( false );
         frame.add( adminPage.panel, c );
         if ( verbose ){
             System.out.println( "Screens Initialized" );

@@ -49,6 +49,18 @@ class RestaurantManager{
         frame.setVisible( true );
     }
 
+    public static Restaurant getRestaurant(){
+        return restaurant;
+    }
+
+    public static Menu getMenu( ){
+        return restaurant.menu;
+    }
+
+    public static MenuItem getMenuItem( int i ){
+        return restaurant.menu.menuItems.get(i);
+    }
+
     public void initPages(){
         c.gridx = 0;
         c.gridy = 0;

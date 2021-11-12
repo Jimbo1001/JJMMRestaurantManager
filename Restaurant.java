@@ -9,7 +9,7 @@ class Restaurant{
     //TABLES
     ArrayList<Table> tables = new ArrayList<Table>();
     //MENU
-    ArrayList<Menu> menuList = new ArrayList<Menu>();
+    Menu menu = new Menu( "Menu" );
     //CURRENT Employee using system
     Employee activeEmployee = new Employee( null, null, false );
     //Is it the first time running the software

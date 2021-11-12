@@ -12,12 +12,11 @@ class MenuCustomizationItem {
             this.price = price;
         }
     }
-    
+
     /*
     @Override
-    public boolean equals(){
+    public boolean equals( MenuCustomizationItem o ){
         //TODO
-        return false;
     }*/
     
     public String toString() {

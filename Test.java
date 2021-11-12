@@ -2,6 +2,8 @@
 class Test{
     public static void main (String [] args){
         //Creating the Restaurant Manager object
-        RestaurantManager myRestaurant = new RestaurantManager();
+        RestaurantManager myRestaurantManager = new RestaurantManager();
+        //Restaurant myRestaurant = new Restaurant();
+        //System.out.println( myRestaurant );
     }
 }

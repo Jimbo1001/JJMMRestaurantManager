@@ -12,13 +12,10 @@ class Restaurant{
     Menu menu = new Menu( "Menu" );
     //CURRENT Employee using system
     Employee activeEmployee = new Employee( null, null, false );
-    //Is it the first time running the software
-    boolean first;
     Restaurant(){ 
-        first = true;
+        name = "Restaurant";
         employees.add( new Employee( "Admin", "1776", true ) );
         tables.add( new Table() );
-        name = null;
     }
     
     //returns true if there is an employee with this id
@@ -43,5 +40,17 @@ class Restaurant{
 
     public void setActiveEmployeeById( Employee ae ){
         activeEmployee = ae;
+    }
+
+    public String toString(){
+        String str = name + "\n";
+        for (int i = 0; i < employees.size(); i++){
+            str += employees.get(i) + "\n";
+        }
+        for (int i = 0; i < tables.size(); i++){
+            str += tables.get(i) + "\n";
+        }
+        str += menu;
+        return str;
     }
 }

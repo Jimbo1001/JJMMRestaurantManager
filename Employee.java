@@ -15,7 +15,7 @@ class Employee{
         this.id = id;
         this.admin = admin;
     }
-
+    
     public boolean getAdmin(){
         return admin;
     }
@@ -26,5 +26,13 @@ class Employee{
 
     public void setID(String id) {
         this.id = id;
+    }
+
+    public String toString(){
+        String s = "";
+        s += name + " ";
+        s += id + " ";
+        s += admin + " ";
+        return s;
     }
 }

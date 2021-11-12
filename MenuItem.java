@@ -23,6 +23,12 @@ class MenuItem {
             this.menuCustomizationItems.add(item);
         }
     }
+    /*
+    @Override
+    public boolean equals(){
+        //TODO
+        return false;
+    }*/
     
     public String toString() {
         String results = "MENU NAME: " + name;

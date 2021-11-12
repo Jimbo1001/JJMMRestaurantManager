@@ -13,6 +13,13 @@ class MenuCustomizationItem {
         }
     }
     
+    /*
+    @Override
+    public boolean equals(){
+        //TODO
+        return false;
+    }*/
+    
     public String toString() {
         String s = "ITEM NAME: " + name + "\nPRICE: " + price;
         return s;

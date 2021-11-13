@@ -27,7 +27,7 @@ class TablePage{
         addBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
                 RestaurantManager.restaurant.tables.add( new Table() );
-                draw();
+                draw(w, h);
             }
         });
 
@@ -37,7 +37,7 @@ class TablePage{
                     RestaurantManager.restaurant.tables.remove( RestaurantManager.restaurant.tables.size() - 1);
                     
                     System.out.println( RestaurantManager.restaurant.tables.size() );
-                    draw();
+                    draw(w, h);
                 }
             }
         });
@@ -50,11 +50,11 @@ class TablePage{
             }
         });
 
-        draw();
+        draw(w, h);
         
     }
 
-    public void draw(){
+    public void draw(int w, int h){
         panel.removeAll();
         panel.repaint();
         panel.revalidate();
@@ -101,8 +101,10 @@ class TablePage{
         panel.add( exitBtn, c );
 
         adminBtn.setPreferredSize( buttonSize );
+        final int ww = w; final int hh = h;
         adminBtn.addActionListener( new ActionListener() {
                 public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.adminPage.redrawAdminPage(ww, hh);
                     RestaurantManager.adminPage.panel.setVisible( true );
                     panel.setVisible( false );
                 }

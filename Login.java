@@ -44,7 +44,7 @@ class Login{
         c.gridy = 0;
         idField.setPreferredSize( idFieldSize );
         panel.add( idField, c );
-        //final int ww = w; final int hh = h;
+        final int ww = w; final int hh = h;
         JButton enterBtn = new JButton( "Enter" );
         enterBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
@@ -52,7 +52,7 @@ class Login{
                 if ( RestaurantManager.restaurant.checkId( input ) ){
                     RestaurantManager.tablePage.panel.setVisible( true );
                     panel.setVisible( false );
-                    RestaurantManager.tablePage.draw();
+                    RestaurantManager.tablePage.draw(ww, hh);
                 }
                 idField.setText( "" );
             }

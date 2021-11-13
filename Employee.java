@@ -1,3 +1,14 @@
+/**
+ * <pre>
+ * File name: Employee.java
+ * Author: James Miller
+ * Date: 11/11/2021
+ * </pre>
+ * Detailed description: 
+ * This class is an Employee object which has a name,
+ * id, and a admin boolean whether it has admin access
+ */
+
 import java.util.ArrayList;
 class Employee{
     String name;

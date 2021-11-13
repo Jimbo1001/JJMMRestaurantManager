@@ -1,24 +1,49 @@
+/**
+ * <pre>
+ * File name: Restaurant.java
+ * Author: James Miller
+ * Date: 10/9/2021
+ * </pre>
+ * Detailed description: 
+ * This class is a restaurant object which has a name,
+ * employees, tables, and a menu
+ */
 import java.util.ArrayList;
-
 class Restaurant{
 
-    //NAME
+    /**
+     * The name of the restuarant. Can't be null or longer than 35 characters.
+     */
     String name;
-    //EMPLOYEES
+    /**
+     * The employees list of the restaurant. Can't be empty or greater than 20.
+     */
     ArrayList<Employee> employees = new ArrayList<Employee>();
-    //TABLES
+    /**
+     * The tables list of the restaurant. Can't be empty or greater than 50.
+     */
     ArrayList<Table> tables = new ArrayList<Table>();
-    //MENU
+    /**
+     * The menu the restaurant offers.
+     */
     Menu menu = new Menu( "Menu" );
+
     //CURRENT Employee using system
     Employee activeEmployee = new Employee( null, null, false );
+
+    /** The ctor for a new default Restaurant*/
     Restaurant(){ 
         name = "Restaurant";
-        employees.add( new Employee( "Admin", "1776", true ) );
+        employees.add( new Employee( "Admin", "", true ) );
+        employees.add( new Employee( "ID:1776", "1776", true ) );
         tables.add( new Table() );
     }
     
-    //returns true if there is an employee with this id
+    /**
+     * This method checks if the parameter id matches
+     * an existing id from the employee list
+     * @param id is the id that is being searched for
+     */
     public boolean checkId( String id ){
         for (int i = 0; i < employees.size(); i++){
             if ( employees.get(i).id.equals( id ) ){

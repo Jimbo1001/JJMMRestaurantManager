@@ -103,7 +103,7 @@ class AdminPage{
         JLabel isAdminLabel                = new JLabel( "Admin:" );
         JCheckBox isAdmin                  = new JCheckBox();
         JButton enterNewEmployeeBtn        = new JButton( "Add New" );
-        private void drawAddNewEmployeePanel( Dimension panelSize, Dimension buttonSize ){
+        private void drawAddNewEmployeePanel( Dimension panelSize, Dimension labelSize, Dimension buttonSize ){
             addNewEmployeePanel.removeAll();
             addNewEmployeePanel.repaint();
             addNewEmployeePanel.revalidate();
@@ -111,39 +111,38 @@ class AdminPage{
             addNewEmployeePanel.setLayout( grid );
             addNewEmployeePanel.setPreferredSize( panelSize );
             
-            addNewEmployeeIdLabel.setPreferredSize( buttonSize );
+            addNewEmployeeIdLabel.setPreferredSize(labelSize);
             c.gridx = 0;
             c.gridy = 0;
             addNewEmployeePanel.add( addNewEmployeeNameLabel, c );
 
-            addNewEmployeeNameField.setPreferredSize( new Dimension(100,50) );
-            c.gridx = 1;
-            c.gridy = 0;
+            addNewEmployeeNameField.setPreferredSize( labelSize );
+            c.gridx = 0;
+            c.gridy = 1;
             addNewEmployeePanel.add( addNewEmployeeNameField, c );
 
-            addNewEmployeeIdLabel.setPreferredSize( buttonSize );
+            addNewEmployeeIdLabel.setPreferredSize(labelSize);
             c.gridx = 0;
-            c.gridy = 1;
+            c.gridy = 2;
             addNewEmployeePanel.add( addNewEmployeeIdLabel, c );
             
-            addNewEmployeeIDField.setPreferredSize( new Dimension(100,50) );
-            c.gridx = 1;
-            c.gridy = 1;
+            addNewEmployeeIDField.setPreferredSize( labelSize );
+            c.gridx = 0;
+            c.gridy = 3;
             addNewEmployeePanel.add( addNewEmployeeIDField, c );
             
-            isAdminLabel.setPreferredSize( buttonSize );
+            isAdminLabel.setPreferredSize( labelSize );
             c.gridx = 0;
-            c.gridy = 2;
+            c.gridy = 4;
             addNewEmployeePanel.add( isAdminLabel, c );
             
-            isAdmin.setPreferredSize( buttonSize );
             c.gridx = 1;
-            c.gridy = 2;
+            c.gridy = 4;
             addNewEmployeePanel.add( isAdmin, c );
 
             enterNewEmployeeBtn.setPreferredSize( buttonSize );
             c.gridx = 1;
-            c.gridy = 3;
+            c.gridy = 5;
             addNewEmployeePanel.add( enterNewEmployeeBtn, c );
             //End Add New Employee Panel
 
@@ -154,10 +153,16 @@ class AdminPage{
     //Visible with addNewEmployeePanel - Pair 1-2/2
     JPanel employeePanel = new JPanel();
         public void drawEmployeePanel( Dimension panelSize ){
-            //EmployeePanel
+            //employeePanel
             employeePanel.setLayout( grid );
             employeePanel.setPreferredSize( panelSize );
-            //End EmployeePanel
+            for (int i = 0; i < RestaurantManager.restaurant.employees.size(); i++){
+                JButton empBtn = new JButton( RestaurantManager.restaurant.employees.get(i).name ); 
+                c.gridx = 0;
+                c.gridy = i;
+                employeePanel.add( empBtn, c );
+            }
+            //end employeePanel
             c.gridx = 1;
             c.gridy = 0;
             optionPanel.add( employeePanel, c );
@@ -194,12 +199,12 @@ class AdminPage{
         JLabel addNewMenuItemPriceLabel    = new JLabel( "Enter new menu item price:" );
         JTextField addMenuItemPriceField   = new JTextField("");
         JButton enterNewMenuItemBtn        = new JButton( "Add New" );
-        private void drawNewMenuItemPanel( Dimension panelSize, Dimension buttonSize ){
+        private void drawNewMenuItemPanel( Dimension panelSize, Dimension labelSize, Dimension buttonSize ){
             //new menu item panel
             newMenuItemPanel.setLayout( grid );
             newMenuItemPanel.setPreferredSize( panelSize );
         
-            addNewMenuItemNameLabel.setPreferredSize( buttonSize );
+            addNewMenuItemNameLabel.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = 0;
             newMenuItemPanel.add( addNewMenuItemNameLabel, c );
@@ -209,7 +214,7 @@ class AdminPage{
             c.gridy = 1;
             newMenuItemPanel.add( addNewMenuItemNameField, c );
 
-            addNewMenuItemPriceLabel.setPreferredSize( buttonSize );
+            addNewMenuItemPriceLabel.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = 2;
             newMenuItemPanel.add( addNewMenuItemPriceLabel, c );
@@ -246,6 +251,7 @@ class AdminPage{
             c.gridy = 0;
             newMenuItemCustomPanel.add(addNewMenuItemCustomNameLabel, c);
 
+            addNewMenuItemCustomNameField.setPreferredSize(buttonSize);
             c.gridx = 0;
             c.gridy = 1;
             newMenuItemCustomPanel.add(addNewMenuItemCustomNameField, c);
@@ -255,10 +261,11 @@ class AdminPage{
             c.gridy = 2;
             newMenuItemCustomPanel.add(addNewMenuItemCustomPriceLabel, c);
             
-            addMenuItemCustomPriceField.setPreferredSize(labelSize); 
+            addMenuItemCustomPriceField.setPreferredSize(buttonSize); 
             c.gridx = 0;
             c.gridy = 3;
             newMenuItemCustomPanel.add(addMenuItemCustomPriceField, c);
+
             c.gridx = 0;
             c.gridy = 4;
             newMenuItemCustomPanel.add(enterNewMenuCustomBtn, c);
@@ -273,8 +280,8 @@ class AdminPage{
 
     AdminPage( int w, int h ){
         Dimension panelSize = new Dimension( w, h );
-        Dimension buttonSize = new Dimension( (int)(w/10), (int)(h/20) );
-        Dimension secondaryPanelSize = new Dimension( (int)(w/4), (int)(h - (h/15)) );
+        Dimension buttonSize = new Dimension( (int)(w/10), (int)(h/15) );
+        Dimension secondaryPanelSize = new Dimension( (int)(w/4), (int)(h - (h/5)) );
         Dimension optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
         Dimension labelSize = new Dimension((int)secondaryPanelSize.width/2, secondaryPanelSize.height);
         panel.setLayout( grid );
@@ -290,17 +297,17 @@ class AdminPage{
         optionPanel.setLayout( grid );
         optionPanel.setPreferredSize( optionPanelSize );
         //draw the add new employee panel
-        drawAddNewEmployeePanel( secondaryPanelSize, buttonSize );
-        //draw the menu panel
-        drawMenuPanel( secondaryPanelSize );
+        drawAddNewEmployeePanel( secondaryPanelSize, labelSize, buttonSize );//pair 1-1/2
         //draw the employee panel
-        drawEmployeePanel( secondaryPanelSize );
+        drawEmployeePanel( secondaryPanelSize );//pair 1-2/2
         //draw the new menu item panel
-        drawNewMenuItemPanel( secondaryPanelSize, buttonSize );
-
-        drawNewMenuCustomItemPanel(secondaryPanelSize, labelSize, buttonSize);
+        drawNewMenuItemPanel( secondaryPanelSize, labelSize, buttonSize );//pair 2-1/2
+        //draw the menu panel
+        drawMenuPanel( secondaryPanelSize );//pair 2-2/2
+        //draw the new menu customization item panel
+        drawNewMenuCustomItemPanel(secondaryPanelSize, labelSize, buttonSize);//pair 3-1/2
         ////end Option Panel
-        
+
         //Add Button Panel to panel
         c.gridx = 0;
         c.gridy = 0;
@@ -317,14 +324,17 @@ class AdminPage{
         Dimension buttonSize = new Dimension( (int)(w/10), (int)(h/20) );
         Dimension secondaryPanelSize = new Dimension( (int)(w/4), (int)(h - (h/15)) );
         Dimension optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
+        Dimension labelSize = new Dimension( (int)(w/8), (int)(h/50));
         //draw the add new employee panel
-        drawAddNewEmployeePanel( secondaryPanelSize, buttonSize );
-        //draw the menu panel
-        drawMenuPanel( secondaryPanelSize );
+        drawAddNewEmployeePanel( secondaryPanelSize, labelSize, buttonSize );//pair 1-1/2
         //draw the employee panel
-        drawEmployeePanel( secondaryPanelSize );
+        drawEmployeePanel( secondaryPanelSize );//pair 1-2/2
         //draw the new menu item panel
-        drawNewMenuItemPanel( secondaryPanelSize, buttonSize );
+        drawNewMenuItemPanel( secondaryPanelSize, labelSize, buttonSize );//pair 2-1/2
+        //draw the menu panel
+        drawMenuPanel( secondaryPanelSize );//pair 2-2/2
+        //draw the new menu customization item panel
+        drawNewMenuCustomItemPanel(secondaryPanelSize, labelSize, buttonSize);//pair 3-1/2
     }
 
 }

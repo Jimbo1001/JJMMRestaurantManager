@@ -10,7 +10,7 @@
  */
 
 import java.util.ArrayList;
-class Employee{
+class Employee {
     String name;
     String id;
     boolean admin;
@@ -21,13 +21,13 @@ class Employee{
         this.admin = false;
     }
     
-    Employee( String name, String id, boolean admin ) {
+    Employee(String name, String id, boolean admin) {
         this.name = name;
         this.id = id;
         this.admin = admin;
     }
     
-    public boolean getAdmin(){
+    public boolean getAdmin() {
         return admin;
     }
 
@@ -39,11 +39,29 @@ class Employee{
         this.id = id;
     }
 
-    public String toString(){
+    public String toString() {
         String s = "";
         s += name + " ";
         s += id + " ";
         s += admin + " ";
         return s;
+    }
+    
+    public boolean equals(Employee other) {
+        if (this.name.equals(other.name)) {
+            return true;
+        } else {
+            return false;
+        }
+        if (this.id.equals(other.id)) {
+            return true;
+        } else {
+            return false;
+        }
+        if (this.admin.equals(other.admin)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

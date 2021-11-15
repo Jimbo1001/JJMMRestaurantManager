@@ -48,17 +48,7 @@ class Employee {
     }
     
     public boolean equals(Employee other) {
-        if (this.name.equals(other.name)) {
-            return true;
-        } else {
-            return false;
-        }
-        if (this.id.equals(other.id)) {
-            return true;
-        } else {
-            return false;
-        }
-        if (this.admin.equals(other.admin)) {
+        if ((this.name.equals(other.name)) && (this.id.equals(other.id))) {
             return true;
         } else {
             return false;

@@ -1,9 +1,10 @@
-import javax.swing.JPanel;
+/*import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
-import javax.swing.JList;
+import javax.swing.JList;*/
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -96,11 +97,11 @@ class AdminPage{
         }
     //Visible with employeePanel - Pair 1-1/2
     JPanel addNewEmployeePanel = new JPanel();
-        JLabel addNewEmployeeNameLabel     = new JLabel( "Enter new employee name:" );
+        JLabel addNewEmployeeNameLabel     = new JLabel( "Enter new employee name:", SwingConstants.LEFT );
         JTextField addNewEmployeeNameField = new JTextField("");
-        JLabel addNewEmployeeIdLabel       = new JLabel( "Enter new employee ID:" );
+        JLabel addNewEmployeeIdLabel       = new JLabel( "Enter new employee ID:", SwingConstants.LEFT  );
         JTextField addNewEmployeeIDField   = new JTextField("");
-        JLabel isAdminLabel                = new JLabel( "Admin:" );
+        JLabel isAdminLabel                = new JLabel( "Admin:", SwingConstants.RIGHT  );
         JCheckBox isAdmin                  = new JCheckBox();
         JButton enterNewEmployeeBtn        = new JButton( "Add New" );
         private void drawAddNewEmployeePanel( Dimension panelSize, Dimension labelSize, Dimension buttonSize ){
@@ -136,13 +137,13 @@ class AdminPage{
             c.gridy = 4;
             addNewEmployeePanel.add( isAdminLabel, c );
             
-            c.gridx = 1;
-            c.gridy = 4;
+            c.gridx = 0;
+            c.gridy = 5;
             addNewEmployeePanel.add( isAdmin, c );
 
             enterNewEmployeeBtn.setPreferredSize( buttonSize );
-            c.gridx = 1;
-            c.gridy = 5;
+            c.gridx = 0;
+            c.gridy = 6;
             addNewEmployeePanel.add( enterNewEmployeeBtn, c );
             //End Add New Employee Panel
 
@@ -170,12 +171,12 @@ class AdminPage{
     //Visible with new menu item panel- Pair 2-1/2
     JPanel menuPanel = new JPanel();
         //Draw the menu panel
-        private void drawMenuPanel( Dimension s ){
+        private void drawMenuPanel( Dimension panelSize ){
             menuPanel.removeAll();
             menuPanel.repaint();
             menuPanel.revalidate();
             menuPanel.setLayout(grid);
-            menuPanel.setPreferredSize( s );
+            menuPanel.setPreferredSize( panelSize );
             for (int i = 0; i < RestaurantManager.getMenu().menuItems.size(); i++ ){
                 JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name );
                 /*itemBtn.addActionListener( new ActionListener(){
@@ -279,11 +280,12 @@ class AdminPage{
     JPanel menuCustomPanel = new JPanel();
 
     AdminPage( int w, int h ){
+        int secondPanelWidth = (int)(w/4);
         Dimension panelSize = new Dimension( w, h );
         Dimension buttonSize = new Dimension( (int)(w/10), (int)(h/15) );
-        Dimension secondaryPanelSize = new Dimension( (int)(w/4), (int)(h - (h/5)) );
+        Dimension secondaryPanelSize = new Dimension( secondPanelWidth, (int)(h - (h/5)) );
         Dimension optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
-        Dimension labelSize = new Dimension((int)secondaryPanelSize.width/2, secondaryPanelSize.height);
+        Dimension labelSize =  new Dimension( secondPanelWidth-(int)(secondPanelWidth/10), (int)(h/10) );//new Dimension((int)secondaryPanelSize.width/2, secondaryPanelSize.height);
         panel.setLayout( grid );
         panel.setPreferredSize( panelSize );
         //panel.setBackground(Color.black);

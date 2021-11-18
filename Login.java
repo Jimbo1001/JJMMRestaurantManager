@@ -52,7 +52,7 @@ class Login{
                 if ( RestaurantManager.restaurant.checkId( input ) ){
                     RestaurantManager.tablePage.panel.setVisible( true );
                     panel.setVisible( false );
-                    RestaurantManager.tablePage.draw(ww, hh);
+                    RestaurantManager.tablePage.drawTablePanel(ww, hh);
                 }
                 idField.setText( "" );
             }

@@ -36,17 +36,47 @@ class Restaurant{
         name = "Restaurant";
         employees.add( new Employee( "Admin", "", true ) );
         employees.add( new Employee( "ID:1776", "1776", true ) );
-        tables.add( new Table() );
+        employees.add( new Employee( "Employee 01", "01", true ) );
+        employees.add( new Employee( "Employee 02", "02", true ) );
+        employees.add( new Employee( "Employee 03", "03", true ) );
+        employees.add( new Employee( "Employee 04", "04", true ) );
+        employees.add( new Employee( "Employee 05", "05", true ) );
+        employees.add( new Employee( "Employee 06", "06", true ) );
+        employees.add( new Employee( "Employee 07", "07", true ) );
+        employees.add( new Employee( "Employee 08", "08", true ) );
+        employees.add( new Employee( "Employee 09", "09", true ) );
+        employees.add( new Employee( "Employee 10", "10", true ) );
+        employees.add( new Employee( "Employee 11", "11", true ) );
+        employees.add( new Employee( "Employee 12", "12", true ) );
+        employees.add( new Employee( "Employee 13", "13", true ) );
+        employees.add( new Employee( "Employee 14", "14", true ) );
+        employees.add( new Employee( "Employee 15", "15", true ) );
+        employees.add( new Employee( "Employee 16", "16", true ) );
+        employees.add( new Employee( "Employee 17", "17", true ) );
+        employees.add( new Employee( "Employee 18", "18", true ) );
+        employees.add( new Employee( "Employee 19", "19", true ) );
+        employees.add( new Employee( "Employee 20", "20", true ) );
+        for (int i = 0; i < 10; i++){ //Add ten tables
+           tables.add( new Table() );
+        }
     }
     
     /**
      * This method checks if the parameter id matches
      * an existing id from the employee list
-     * @param id is the id that is being searched for
+     * @param e is the employee that is being searched for
      */
-    public boolean checkId( String id ){
+     public boolean checkId( String id ){
         for (int i = 0; i < employees.size(); i++){
             if ( employees.get(i).id.equals( id ) ){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkEmployee( Employee e ){
+        for (int i = 0; i < employees.size(); i++){
+            if ( employees.get(i).equals( e ) ){
                 return true;
             }
         }

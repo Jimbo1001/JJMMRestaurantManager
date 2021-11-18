@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException; 
 
 class Menu {
     String name;
@@ -16,12 +18,38 @@ class Menu {
         //TODO
     }*/
 
-    public String toString() {
-        String results = "MENU NAME: " + name;
+    /*public String toString() {
+        String results = "MENU NAME*" + name + "~";
         results += " + ";
         for (int i = 0; i < this.menuItems.size(); i++) {
             results += " " + this.menuItems.get(i);
         }
         return results;
+    }*/
+
+    public String toString() {
+        String results = "MENU NAME*" + name + "~";
+        for (int i = 0; i < menuItems.size(); i++) {
+            results += menuItems.get(i).name + "," + menuItems.get(i).price;
+            if(menuItems.get(i).menuCustomizationItems != null) {
+                for (int j = 0; j < menuItems.get(i).menuCustomizationItems.size(); j++) {
+                    results += "*" + menuItems.get(i).menuCustomizationItems.get(j).name + "," + menuItems.get(i).menuCustomizationItems.get(j).price;
+                }
+            }
+            results += "~";
+        }
+        return results;
     }
-}
+
+    public Boolean WriteToMenu(Menu menu) {
+        try {
+            FileWriter myWriter = new FileWriter("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Menu.txt");
+            myWriter.write(menu.toString());
+            myWriter.close();
+            return true;
+          } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+          }
+    }
+ }

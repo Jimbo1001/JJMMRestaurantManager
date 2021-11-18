@@ -1,6 +1,9 @@
+//import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException; 
 import java.util.ArrayList;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
 
 public class WriterTest {
     public static void main(String [] args) {
@@ -29,6 +32,22 @@ public class WriterTest {
             System.out.println("An error occurred.");
             e.printStackTrace();
           }
+
+        /*try {
+            FileReader fr = new FileReader("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String content;
+            if (br.ready()) {
+                content = br.readLine();
+            }
+            FileWriter myWriter = new FileWriter("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
+            myWriter.write(content + employee.id + "*");
+            myWriter.close();
+            //return true;
+
+        } catch (IOException e) {
+            //return false;
+        }*/
 
           
     }

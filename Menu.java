@@ -19,7 +19,7 @@ class Menu {
     }*/
 
     /*public String toString() {
-        String results = "MENU NAME*" + name + "~";
+        String results = "MENU NAME: " + name;
         results += " + ";
         for (int i = 0; i < this.menuItems.size(); i++) {
             results += " " + this.menuItems.get(i);
@@ -41,9 +41,9 @@ class Menu {
         return results;
     }
 
-    public Boolean WriteToMenu(Menu menu) {
+    public boolean WriteToMenu(Menu menu) { //should run whenever something is added to the menu
         try {
-            FileWriter myWriter = new FileWriter("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Menu.txt");
+            FileWriter myWriter = new FileWriter("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Menu.txt"); //want to change to github location
             myWriter.write(menu.toString());
             myWriter.close();
             return true;

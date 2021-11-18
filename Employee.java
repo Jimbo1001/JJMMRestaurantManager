@@ -10,6 +10,11 @@
  */
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 class Employee {
     String name;
     String id;
@@ -51,6 +56,23 @@ class Employee {
         if ((this.name.equals(other.name)) && (this.id.equals(other.id))) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public boolean WritetoLogin(Employee employee) {
+        try {
+            FileReader fr = new FileReader("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String content;
+            if (br.ready()) {
+                content = br.readLine();
+            }
+            FileWriter myWriter = new FileWriter("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
+            myWriter.write(content + employee.id + "*");
+            myWriter.close();
+            return true;
+        } catch (IOException e) {
             return false;
         }
     }

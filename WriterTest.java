@@ -24,7 +24,7 @@ public class WriterTest {
         String name = "MenuTest";
         
         try {
-            FileWriter myWriter = new FileWriter("/Users/jamesmiller/Desktop/JJMMRestaurantManager/Menu.txt");
+            FileWriter myWriter = new FileWriter("Menu.txt");
             myWriter.write(toString(name, menuItems));
             myWriter.close();
             System.out.println("Successfully wrote to the file.");

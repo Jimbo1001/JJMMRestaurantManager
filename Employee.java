@@ -64,7 +64,7 @@ class Employee {
         try {
             FileReader fr = new FileReader("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
             BufferedReader br = new BufferedReader(fr);
-            String content;
+            String content = "";
             if (br.ready()) {
                 content = br.readLine();
             }

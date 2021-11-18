@@ -34,8 +34,8 @@ class MenuItem {
         //TODO
     }*/
     
-    public String toString() {
-        String results = "MENU NAME: " + name;
+    /*public String toString() {
+        String results = name;
         results += "+";
         for (int i = 0; i < this.menuCustomizationItems.size(); i++) {
             results += " " + this.menuCustomizationItems.get(i);
@@ -44,5 +44,5 @@ class MenuItem {
             }
         }
         return results;
-    }
+    }*/
 }

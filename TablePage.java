@@ -61,7 +61,7 @@ class TablePage{
             final int ww = w; final int hh = h;
             adminBtn.addActionListener( new ActionListener() {
                     public void actionPerformed( ActionEvent e ){
-                        RestaurantManager.adminPage.redrawAdminPage(ww, hh);
+                        RestaurantManager.adminPage.drawAdminPage( );
                         RestaurantManager.adminPage.panel.setVisible( true );
                         panel.setVisible( false );
                     }

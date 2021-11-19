@@ -1,4 +1,4 @@
-class MenuCustomizationItem {
+/*class MenuCustomizationItem {
     String name;
     float price;
     
@@ -17,10 +17,10 @@ class MenuCustomizationItem {
     @Override
     public boolean equals( MenuCustomizationItem o ){
         //TODO
-    }*/
+    }
     
     public String toString() {
         String s = "ITEM NAME: " + name + "\nPRICE: " + price;
         return s;
     }
-}
+}*/

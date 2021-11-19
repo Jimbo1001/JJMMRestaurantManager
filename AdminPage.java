@@ -33,12 +33,13 @@ class AdminPage{
             employeeBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
                         addNewEmployeePanel.setVisible( true );//pair 1-1/2
-                        employeePanel.setVisible( true );//pair 1-2/2
+                        employeePane.setVisible( true );//pair 1-2/2
 
                         newMenuItemPanel.setVisible( false );//pair 2-1/2
-                        menuPanel.setVisible( false );//pair 2-2/2
+                        menuPane.setVisible( false );//pair 2-2/2
 
                         newMenuItemCustomPanel.setVisible(false);//pair 3-1/2
+                        menuCustomPane.setVisible(false);//pair 3-2/2
                     }
                 }
             );
@@ -50,12 +51,13 @@ class AdminPage{
             menuBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
                         addNewEmployeePanel.setVisible(false);//pair 1-1/2
-                        employeePanel.setVisible(false);//pair 1-2/2
+                        employeePane.setVisible(false);//pair 1-2/2
 
                         newMenuItemPanel.setVisible(true);//pair 2-1/2
-                        menuPanel.setVisible( true );//pair 2-2/2
+                        menuPane.setVisible( true );//pair 2-2/2
 
                         newMenuItemCustomPanel.setVisible(false);//pair 3-1/2
+                        menuCustomPane.setVisible(false);//pair 3-2/2
                     }
                 }
             );
@@ -67,13 +69,13 @@ class AdminPage{
             menuItemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
                         addNewEmployeePanel.setVisible(false);//pair 1-1/2
-                        employeePanel.setVisible(false);//pair 1-2/2
+                        employeePane.setVisible(false);//pair 1-2/2
 
                         newMenuItemPanel.setVisible(false);//pair 2-1/2
-                        menuPanel.setVisible(false);//pair 2-2/2
+                        menuPane.setVisible(false);//pair 2-2/2
 
                         newMenuItemCustomPanel.setVisible(true);//pair 3-1/2
-                        //pair 3-2/2
+                        menuCustomPane.setVisible(true);//pair 3-2/2
                     }
                 }
             );
@@ -108,6 +110,7 @@ class AdminPage{
             addNewEmployeePanel.removeAll();
             addNewEmployeePanel.repaint();
             addNewEmployeePanel.revalidate();
+            addNewEmployeePanel.setBackground(Color.red);
             //Add New Employee Panel
             addNewEmployeePanel.setLayout( grid );
             addNewEmployeePanel.setPreferredSize( panelSize );
@@ -155,7 +158,7 @@ class AdminPage{
                         addNewEmployeeNameField.setText(""); // clear text
                         addNewEmployeeIDField.setText(""); // clear text
                         isAdmin.setSelected(false);
-                        drawEmployeePanel( panelSize );
+                        drawAdminPage( );
                     }
                 }
             );
@@ -169,7 +172,7 @@ class AdminPage{
             optionPanel.add( addNewEmployeePanel, c );
         }
     //Visible with addNewEmployeePanel - Pair 1-2/2
-    JScrollPane employeePanel = new JScrollPane();//JPanel();
+    JScrollPane employeePane = new JScrollPane();//JPanel();
     JPanel displayPanel = new JPanel();
     //ScrollPanelLayout sgrid = new ScrollPaneLayout();
         public void drawEmployeePanel( Dimension panelSize ){
@@ -177,8 +180,8 @@ class AdminPage{
             displayPanel.repaint();
             displayPanel.revalidate();
             //employeePanel
-            employeePanel.setLayout( new ScrollPaneLayout() );
-            employeePanel.setPreferredSize( panelSize );
+            employeePane.setLayout( new ScrollPaneLayout() );
+            employeePane.setPreferredSize( panelSize );
             displayPanel.setLayout(grid);
             for (int i = 0; i < RestaurantManager.restaurant.employees.size(); i++){
                 JButton empBtn = new JButton( RestaurantManager.restaurant.employees.get(i).name ); 
@@ -186,46 +189,23 @@ class AdminPage{
                 c.gridy = i;
                 displayPanel.add(empBtn, c);
             }
-            employeePanel.getViewport().add( displayPanel, null );
-            //end employeePanel
+            employeePane.getViewport().add( displayPanel, null );
+            //end employeePane
             c.gridx = 1;
             c.gridy = 0;
-            optionPanel.add( employeePanel, c );
+            optionPanel.add( employeePane, c );
         }
-    //Visible with new menu item panel- Pair 2-1/2
-    JPanel menuPanel = new JPanel();
-        //Draw the menu panel
-        private void drawMenuPanel( Dimension panelSize ){
-            menuPanel.removeAll();
-            menuPanel.repaint();
-            menuPanel.revalidate();
-
-            menuPanel.setLayout(grid);
-            menuPanel.setPreferredSize( panelSize );
-            for (int i = 0; i < RestaurantManager.getMenu().menuItems.size(); i++ ){
-                JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name );
-                /*itemBtn.addActionListener( new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        
-                    }
-                });*/
-                c.gridx = 0;
-                c.gridy = i;
-                menuPanel.add( itemBtn, c );
-            }
-            c.gridx = 1;
-            c.gridy = 0;
-            optionPanel.add( menuPanel, c );
-            menuPanel.setVisible( false );
-        }
-    //Visible with menu panel - Pair 2-2/2
+    //Visible with menu panel - Pair 2-1/2
     JPanel newMenuItemPanel = new JPanel();
         JLabel addNewMenuItemNameLabel     = new JLabel( "Enter new menu item name:" );
         JTextField addNewMenuItemNameField = new JTextField("");
         JLabel addNewMenuItemPriceLabel    = new JLabel( "Enter new menu item price:" );
         JTextField addMenuItemPriceField   = new JTextField("");
-        JButton enterNewMenuItemBtn        = new JButton( "Add New" );
+        JButton enterNewMenuItemBtn;//        = new JButton( "Add New" );
         private void drawNewMenuItemPanel( Dimension panelSize, Dimension labelSize, Dimension buttonSize ){
+            newMenuItemPanel.removeAll();
+            newMenuItemPanel.repaint();
+            newMenuItemPanel.revalidate();
             //new menu item panel
             newMenuItemPanel.setLayout( grid );
             newMenuItemPanel.setPreferredSize( panelSize );
@@ -235,7 +215,7 @@ class AdminPage{
             c.gridy = 0;
             newMenuItemPanel.add( addNewMenuItemNameLabel, c );
 
-            addNewMenuItemNameField.setPreferredSize( buttonSize );
+            addNewMenuItemNameField.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = 1;
             newMenuItemPanel.add( addNewMenuItemNameField, c );
@@ -245,18 +225,26 @@ class AdminPage{
             c.gridy = 2;
             newMenuItemPanel.add( addNewMenuItemPriceLabel, c );
 
-            addMenuItemPriceField.setPreferredSize( buttonSize );
+            addMenuItemPriceField.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = 3;
             newMenuItemPanel.add( addMenuItemPriceField, c );
 
+            enterNewMenuItemBtn = new JButton("Add New Menu Item");
             enterNewMenuItemBtn.setPreferredSize( buttonSize );
-            /*enterNewMenuItemBtn.addActionListener( new ActionListener(){
+            enterNewMenuItemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-
+                        if ( isNumeric( addMenuItemPriceField.getText() ) && !addNewMenuItemNameField.getText().equals("") ) {
+                            String name = addNewMenuItemNameField.getText();
+                            float price = Float.parseFloat( addMenuItemPriceField.getText() );
+                            RestaurantManager.restaurant.menu.menuItems.add( new MenuItem( name, price ));
+                            drawAdminPage();
+                        }
+                        addNewMenuItemNameField.setText("");
+                        addMenuItemPriceField.setText("");
                     }
                 }
-            );*/
+            );
             c.gridx = 0;
             c.gridy = 4;
             newMenuItemPanel.add( enterNewMenuItemBtn, c );
@@ -265,7 +253,53 @@ class AdminPage{
             c.gridx = 0;
             c.gridy = 0;
             optionPanel.add( newMenuItemPanel, c );
-            newMenuItemPanel.setVisible( false );
+        }
+        //code from https://www.baeldung.com/java-check-string-number
+        public static boolean isNumeric(String strNum) {
+            if (strNum == null) {
+                return false;
+            }
+            try {
+                double d = Double.parseDouble(strNum);
+            } catch (NumberFormatException nfe) {
+                return false;
+            }
+            return true;
+        }
+        //end code from https://www.baeldung.com/java-check-string-number
+
+         //Visible with new menu item panel- Pair 2-2/2
+    JScrollPane menuPane = new JScrollPane();
+    JPanel menuPanel = new JPanel();
+        //Draw the menu panel
+        private void drawMenuPanel( Dimension panelSize ){
+            menuPanel.removeAll();
+            menuPanel.repaint();
+            menuPanel.revalidate();
+            
+            menuPane.setLayout( new ScrollPaneLayout() );
+            
+            menuPanel.setLayout(grid);
+            menuPane.setPreferredSize( panelSize );
+            for (int i = 0; i < RestaurantManager.getMenu().menuItems.size(); i++ ){
+                //JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name );
+                JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name 
+                                        + " " +  RestaurantManager.getMenu().menuItems.get(i).price);
+                /*itemBtn.addActionListener( new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        
+                    }
+                }
+                );*/
+                c.gridx = 0;
+                c.gridy = i;
+                menuPanel.add( itemBtn, c );
+            }
+
+            menuPane.getViewport().add( menuPanel, null );
+            c.gridx = 1;
+            c.gridy = 0;
+            optionPanel.add( menuPane, c );
         }
     //Visible with menu custom panel
     JPanel newMenuItemCustomPanel = new JPanel();
@@ -283,7 +317,7 @@ class AdminPage{
             c.gridy = 0;
             newMenuItemCustomPanel.add(addNewMenuItemCustomNameLabel, c);
 
-            addNewMenuItemCustomNameField.setPreferredSize(buttonSize);
+            addNewMenuItemCustomNameField.setPreferredSize(labelSize);
             c.gridx = 0;
             c.gridy = 1;
             newMenuItemCustomPanel.add(addNewMenuItemCustomNameField, c);
@@ -293,11 +327,25 @@ class AdminPage{
             c.gridy = 2;
             newMenuItemCustomPanel.add(addNewMenuItemCustomPriceLabel, c);
             
-            addMenuItemCustomPriceField.setPreferredSize(buttonSize); 
+            addMenuItemCustomPriceField.setPreferredSize(labelSize); 
             c.gridx = 0;
             c.gridy = 3;
             newMenuItemCustomPanel.add(addMenuItemCustomPriceField, c);
 
+            enterNewMenuCustomBtn.setPreferredSize(buttonSize); 
+            enterNewMenuCustomBtn.addActionListener( new ActionListener(){
+                    public void actionPerformed( ActionEvent e ){
+                        if ( isNumeric( addMenuItemCustomPriceField.getText() ) && !addNewMenuItemCustomNameField.getText().equals("") ) {
+                            String name = addNewMenuItemCustomNameField.getText();
+                            float price = Float.parseFloat( addMenuItemCustomPriceField.getText() );
+                            RestaurantManager.restaurant.menu.customItems.add( new MenuItem( name, price ));
+                            drawAdminPage();
+                        }
+                        addNewMenuItemCustomNameField.setText("");
+                        addMenuItemCustomPriceField.setText("");
+                    }
+                }
+            );
             c.gridx = 0;
             c.gridy = 4;
             newMenuItemCustomPanel.add(enterNewMenuCustomBtn, c);
@@ -305,24 +353,62 @@ class AdminPage{
             c.gridx = 0;
             c.gridy = 0;
             optionPanel.add(newMenuItemCustomPanel, c);
-            newMenuItemCustomPanel.setVisible(false);
         }
-    //Vistible with new menu custom panel
-    JPanel menuCustomPanel = new JPanel();
+    //Visible with new menu custom panel
+    JScrollPane menuCustomPane = new JScrollPane();
+    JPanel menuCustomPanel = new JPanel(); //pair 3 - 2/2
+        private void drawMenuCustomPanel(Dimension panelSize){
+            menuCustomPanel.removeAll();
+            menuCustomPanel.repaint();
+            menuCustomPanel.revalidate();
+            
+            menuCustomPane.setLayout( new ScrollPaneLayout() );
+            
+            menuCustomPanel.setLayout(grid);
+            menuCustomPane.setPreferredSize( panelSize );
+            for (int i = 0; i < RestaurantManager.getMenu().customItems.size(); i++ ){
+                //JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name );
+                JButton customItemBtn = new JButton( RestaurantManager.getMenu().customItems.get(i).name 
+                                        + " " +  RestaurantManager.getMenu().customItems.get(i).price);
+                /*customItemBtn.addActionListener( new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        
+                    }
+                }
+                );*/
+                c.gridx = 0;
+                c.gridy = i;
+                menuCustomPanel.add( customItemBtn, c );
+            }
 
+            menuCustomPane.getViewport().add( menuCustomPanel, null );
+            c.gridx = 1;
+            c.gridy = 0;
+            optionPanel.add( menuCustomPane, c );
+        }
+        int secondPanelWidth;// = (int)(w/4);
+        int leftPanelWidth;// = (int)(w/3);
+        Dimension panelSize;// = new Dimension( w, h );
+        Dimension buttonSize;// = new Dimension( (int)(w/10), (int)(h/15) );
+        Dimension leftPanelSize;// = new Dimension( leftPanelWidth, (int)(h - (h/5)) );
+        Dimension secondaryPanelSize;// = new Dimension( secondPanelWidth, (int)(h - (h/5)) );
+        Dimension optionPanelSize;// = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
+        Dimension labelSize;// =  new Dimension( secondPanelWidth-(int)(secondPanelWidth/10), h - (int)(h/100) );
+        
     AdminPage( int w, int h ){
-        int secondPanelWidth = (int)(w/4);
-        Dimension panelSize = new Dimension( w, h );
-        Dimension buttonSize = new Dimension( (int)(w/10), (int)(h/15) );
-        Dimension leftPanelSize = new Dimension( w - (int)(w/1.5), (int)(h - (h/5)) );
-        Dimension secondaryPanelSize = new Dimension( secondPanelWidth, (int)(h - (h/5)) );
-        Dimension optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
-        Dimension labelSize =  new Dimension( secondPanelWidth-(int)(secondPanelWidth/10), h - (int)(h/100) );//new Dimension((int)secondaryPanelSize.width/2, secondaryPanelSize.height);
+        leftPanelWidth = (int)(w/1.5);
+        secondPanelWidth = (int)(w/4);
+        panelSize = new Dimension( w, h );
+        buttonSize = new Dimension( (int)(w/10), (int)(h/15) );
+        leftPanelSize = new Dimension( leftPanelWidth, (int)(h - (h/5)) );
+        secondaryPanelSize = new Dimension( secondPanelWidth, (int)(h - (h/5)) );
+        optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
+        labelSize =  new Dimension( leftPanelWidth-(int)(leftPanelWidth/10), (int)(h/15) );
+
+
         panel.setLayout( grid );
         panel.setPreferredSize( panelSize );
-        //panel.setBackground(Color.black);
-
-        
+        panel.setBackground(Color.black);
             
         //draw the button panel
         drawButtonPanel( new Dimension( (int)(w - (w/50)), (int)(h/15) ), buttonSize );
@@ -330,18 +416,18 @@ class AdminPage{
         ////Option Panel
         optionPanel.setLayout( grid );
         optionPanel.setPreferredSize( optionPanelSize );
-        //draw the add new employee panel
-        drawAddNewEmployeePanel( leftPanelSize, labelSize, buttonSize );//pair 1-1/2
-        //draw the employee panel
-        drawEmployeePanel( secondaryPanelSize );//pair 1-2/2
-        //draw the new menu item panel
-        drawNewMenuItemPanel( secondaryPanelSize, labelSize, buttonSize );//pair 2-1/2
-        //draw the menu panel
-        drawMenuPanel( secondaryPanelSize );//pair 2-2/2
-        //draw the new menu customization item panel
-        drawNewMenuCustomItemPanel(secondaryPanelSize, labelSize, buttonSize);//pair 3-1/2
-        ////end Option Panel
+        
+        
+        drawAdminPage( );
 
+        addNewEmployeePanel.setVisible(true);//pair 1-1/2
+        employeePane.setVisible(true);//pair 1-2/2
+
+        newMenuItemPanel.setVisible(false);//pair 2-1/2
+        menuPane.setVisible(false);//pair 2-2/2
+
+        newMenuItemCustomPanel.setVisible(false);//pair 3-1/2
+        menuCustomPane.setVisible(false);//pair 3-2/2
         //Add Button Panel to panel
         c.gridx = 0;
         c.gridy = 0;
@@ -353,23 +439,18 @@ class AdminPage{
         panel.add( optionPanel, c );
     }
 
-    public void redrawAdminPage( int w, int h ){
-        Dimension panelSize = new Dimension( w, h );
-        Dimension buttonSize = new Dimension( (int)(w/10), (int)(h/20) );
-        Dimension leftPanelSize = new Dimension( w - (int)(w/1.5), (int)(h - (h/5)) );
-        Dimension secondaryPanelSize = new Dimension( (int)(w/4), (int)(h - (h/15)) );
-        Dimension optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
-        Dimension labelSize = new Dimension( (int)(w/8), (int)(h/50));
+    public void drawAdminPage( ){
         //draw the add new employee panel
         drawAddNewEmployeePanel( leftPanelSize, labelSize, buttonSize );//pair 1-1/2
         //draw the employee panel
         drawEmployeePanel( secondaryPanelSize );//pair 1-2/2
         //draw the new menu item panel
-        drawNewMenuItemPanel( secondaryPanelSize, labelSize, buttonSize );//pair 2-1/2
+        drawNewMenuItemPanel( leftPanelSize, labelSize, buttonSize );//pair 2-1/2
         //draw the menu panel
         drawMenuPanel( secondaryPanelSize );//pair 2-2/2
         //draw the new menu customization item panel
-        drawNewMenuCustomItemPanel(secondaryPanelSize, labelSize, buttonSize);//pair 3-1/2
+        drawNewMenuCustomItemPanel(leftPanelSize, labelSize, buttonSize);//pair 3-1/2
+        drawMenuCustomPanel(secondaryPanelSize);
     }
 
 }

@@ -34,8 +34,7 @@ class Restaurant{
     /** The ctor for a new default Restaurant*/
     Restaurant(){ 
         name = "Restaurant";
-        employees.add( new Employee( "Admin", "", true ) );
-        employees.add( new Employee( "ID:1776", "1776", true ) );
+        employees.add( new Employee( "Employee 00", "", true ) );
         employees.add( new Employee( "Employee 01", "01", true ) );
         employees.add( new Employee( "Employee 02", "02", true ) );
         employees.add( new Employee( "Employee 03", "03", true ) );
@@ -56,11 +55,15 @@ class Restaurant{
         employees.add( new Employee( "Employee 18", "18", true ) );
         employees.add( new Employee( "Employee 19", "19", true ) );
         employees.add( new Employee( "Employee 20", "20", true ) );
+        employees.add( new Employee( "Employee 21", "21", true ) );
+        employees.add( new Employee( "Employee 22", "22", true ) );
         for (int i = 0; i < 10; i++){ //Add ten tables
            tables.add( new Table() );
         }
     }
-    
+    public Menu getMenu(){
+        return menu;
+    }
     /**
      * This method checks if the parameter id matches
      * an existing id from the employee list

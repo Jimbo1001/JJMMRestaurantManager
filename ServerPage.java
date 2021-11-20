@@ -34,18 +34,6 @@ class ServerPage{
         drawReceiptPanel( );
         drawMenuPanel( );
 
-        JButton exit = new JButton("Exit");
-        exit.setPreferredSize( buttonSize );
-        exit.addActionListener( new ActionListener() {
-                public void actionPerformed( ActionEvent e ){
-                    RestaurantManager.login.panel.setVisible( true );
-                    panel.setVisible( false );
-                }
-            }
-        );
-        c.gridx = 0;
-        c.gridy = 100;
-        menuPanel.add( exit, c );
         panel.setBackground( Color.red );
     }
     JScrollPane receiptPane = new JScrollPane();
@@ -84,7 +72,7 @@ class ServerPage{
             c.gridy = i + 3;
             receiptPanel.add( totalLabel, c );
         }
-
+        
         
         c.gridx = 0;
         c.gridy = 0;
@@ -120,6 +108,20 @@ class ServerPage{
             c.gridy = i;
             menuPanel.add( itemBtn, c );
         }
+        
+        JButton exit = new JButton("Exit");
+        exit.setPreferredSize( buttonSize );
+        exit.addActionListener( new ActionListener() {
+                public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.login.panel.setVisible( true );
+                    panel.setVisible( false );
+                }
+            }
+        );
+        c.gridx = 0;
+        c.gridy = i + 1;
+        menuPanel.add( exit, c );
+
         menuPane.getViewport().add( menuPanel, null);
         c.gridx = 1;
         c.gridy = 0;

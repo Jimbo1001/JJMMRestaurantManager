@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 class RestaurantManager{
     //Restaurant object
     static Restaurant restaurant;
@@ -96,5 +97,13 @@ class RestaurantManager{
     public static void exitToHome( JPanel panel ){
         panel.setVisible(false);
         homePage.panel.setVisible(true);
+    }
+
+    public static String FloattoString(Float f, boolean b) {
+        String num;
+        if (b) {
+            num = "$";
+        }
+        num += String.format("%.02f", f);
     }
 }

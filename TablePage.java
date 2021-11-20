@@ -47,9 +47,7 @@ class TablePage{
             exitBtn.setPreferredSize( buttonSize );
             exitBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
-                        panel.setVisible( false );
-                        RestaurantManager.login.panel.setVisible( true );
-                        System.out.println("Exiting to login");
+                        RestaurantManager.exitToHome(panel);
                     }
                 }
             );

@@ -86,8 +86,7 @@ class AdminPage{
             //JButton menuCustomizationItemBtn = new JButton( "Custom Items" );
             exitBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
-                        panel.setVisible( false );
-                        RestaurantManager.login.panel.setVisible( true );
+                        RestaurantManager.exitToHome(panel);
                     }
                 }
             );

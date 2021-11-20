@@ -161,6 +161,17 @@ class Login{
         c.gridy = 3;
         panel.add( btn9, c );
 
+        JButton exitBtn = new JButton( "Exit" );
+        exitBtn.addActionListener( new ActionListener(){
+            public void actionPerformed( ActionEvent e ){
+                RestaurantManager.exitToHome( panel );
+            }
+        });
+        exitBtn.setPreferredSize( buttonSize );
+        c.gridx = 1;
+        c.gridy = 4;
+        panel.add( exitBtn, c );
+
         if ( verbose ){
             System.out.println( "Login Initialized" );
         }

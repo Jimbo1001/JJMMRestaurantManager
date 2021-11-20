@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 class RestaurantManager{
     //Restaurant object
     static Restaurant restaurant;
+    //Home Page
+    static HomePage homePage;
     //Login Page
     static Login login;
     //Table Page
@@ -39,7 +41,8 @@ class RestaurantManager{
         tablePage = new TablePage( pw, ph );
         serverPage = new ServerPage( pw, ph );
         adminPage = new AdminPage( pw, ph );
-
+        homePage = new HomePage( pw, ph);
+       
         frame = new JFrame();
         frame.setLayout( grid);
         frame.setMinimumSize( new Dimension( w, h ) );
@@ -64,6 +67,11 @@ class RestaurantManager{
     public void initPages(){
         c.gridx = 0;
         c.gridy = 0;
+        frame.add( homePage.panel, c );
+
+        c.gridx = 0;
+        c.gridy = 0;
+        login.panel.setVisible( false );
         frame.add( login.panel, c );
         
         c.gridx = 0;
@@ -84,5 +92,9 @@ class RestaurantManager{
             System.out.println( "Screens Initialized" );
         }
     }
-
+    
+    public static void exitToHome( JPanel panel ){
+        panel.setVisible(false);
+        homePage.panel.setVisible(true);
+    }
 }

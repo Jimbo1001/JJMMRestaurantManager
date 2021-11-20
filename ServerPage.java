@@ -16,6 +16,7 @@ class ServerPage{
     Dimension panelSize;
     Dimension leftPanelSize;
     Dimension rightPanelSize;
+    Dimension labelSize;
     ServerPage( int w, int h){
         activeTable = new Table();
         int leftPanelWidth = (int)(w/1.5);
@@ -25,14 +26,16 @@ class ServerPage{
         
         leftPanelSize = new Dimension( leftPanelWidth, (int)(h - (h/5)) );
         rightPanelSize = new Dimension( secondPanelWidth, (int)(h - (h/5)) );
-        /*optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
-        labelSize =  new Dimension( leftPanelWidth-(int)(leftPanelWidth/10), (int)(h/15) );*/
+        //optionPanelSize = new Dimension( (int)(w - (w/50)), (int)(h - (h/15)) );
+        labelSize  = new Dimension( (int)(w/5) / 2, (int)(h/15) / 2 );
 
         panel.setLayout( grid );
         panel.setPreferredSize( panelSize );
 
         drawReceiptPanel( );
         drawMenuPanel( );
+        drawClosePanel( );
+        closePanel.setVisible(false);
 
         panel.setBackground( Color.red );
     }
@@ -51,26 +54,60 @@ class ServerPage{
         if(activeTable.receipt.itemList != null){
             int i = 0;
             for(; i < activeTable.receipt.itemList.size(); i++){
-                JLabel item = new JLabel(activeTable.receipt.itemList.get(i).name 
-                                        + " " + activeTable.receipt.itemList.get(i).price);
+                JLabel itemName = new JLabel(activeTable.receipt.itemList.get(i).name);
+                itemName.setHorizontalAlignment( SwingConstants.LEFT );
+                itemName.setPreferredSize( labelSize );
                 c.gridx = 0;
                 c.gridy = i;
-                receiptPanel.add( item, c );
+                receiptPanel.add( itemName, c );
+                JLabel itemPrice = new JLabel( "" +activeTable.receipt.itemList.get(i).price );
+                itemPrice.setHorizontalAlignment( SwingConstants.RIGHT );
+                itemPrice.setPreferredSize( labelSize );
+                c.gridx = 1;
+                c.gridy = i;
+                receiptPanel.add( itemPrice, c );
             }
-            JLabel subTotalLabel = new JLabel( "Sub Total: " + activeTable.receipt.getSubTotal() );
+            JLabel subTotalLabel1 = new JLabel( "Sub Total: " );
+            subTotalLabel1.setHorizontalAlignment( SwingConstants.LEFT);
+            subTotalLabel1.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = i + 1;
-            receiptPanel.add( subTotalLabel, c );
+            receiptPanel.add( subTotalLabel1, c );
 
-            JLabel taxLabel = new JLabel( "Tax: " + activeTable.receipt.getTax() );
+            JLabel subTotalLabel2 = new JLabel( "" + activeTable.receipt.getSubTotal() );
+            subTotalLabel2.setHorizontalAlignment( SwingConstants.RIGHT);
+            subTotalLabel2.setPreferredSize( labelSize );
+            c.gridx = 1;
+            c.gridy = i + 1;
+            receiptPanel.add( subTotalLabel2, c );
+
+            JLabel taxLabel1 = new JLabel( "Tax: " );
+            taxLabel1.setHorizontalAlignment( SwingConstants.LEFT);
+            taxLabel1.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = i + 2;
-            receiptPanel.add( taxLabel, c );
+            receiptPanel.add( taxLabel1, c );
+
+            JLabel taxLabel2 = new JLabel( "" + activeTable.receipt.getTax() );
+            taxLabel2.setHorizontalAlignment( SwingConstants.RIGHT);
+            taxLabel2.setPreferredSize( labelSize );
+            c.gridx = 1;
+            c.gridy = i + 2;
+            receiptPanel.add( taxLabel2, c );
  
-            JLabel totalLabel = new JLabel( "Total: " + activeTable.receipt.getTotal() );
+            JLabel totalLabel1 = new JLabel( "Total: " );
+            totalLabel1.setHorizontalAlignment( SwingConstants.LEFT);
+            totalLabel1.setPreferredSize( labelSize );
             c.gridx = 0;
             c.gridy = i + 3;
-            receiptPanel.add( totalLabel, c );
+            receiptPanel.add( totalLabel1, c );
+
+            JLabel totalLabel2 = new JLabel( "" + activeTable.receipt.getTotal() );
+            totalLabel2.setHorizontalAlignment( SwingConstants.RIGHT);
+            totalLabel2.setPreferredSize( labelSize );
+            c.gridx = 1;
+            c.gridy = i + 3;
+            receiptPanel.add( totalLabel2, c );
         }
         
         
@@ -108,24 +145,88 @@ class ServerPage{
             c.gridy = i;
             menuPanel.add( itemBtn, c );
         }
-        
-        JButton exit = new JButton("Exit");
-        exit.setPreferredSize( buttonSize );
-        exit.addActionListener( new ActionListener() {
+
+        JButton closeBill = new JButton("Close Bill");
+        closeBill.setPreferredSize( buttonSize );
+        closeBill.addActionListener( new ActionListener() {
                 public void actionPerformed( ActionEvent e ){
-                    RestaurantManager.login.panel.setVisible( true );
-                    panel.setVisible( false );
+                    closePanel.setVisible( true );
+                    menuPane.setVisible(false);
                 }
             }
         );
         c.gridx = 0;
         c.gridy = i + 1;
+        menuPanel.add( closeBill, c );
+
+        JButton exit = new JButton("Exit");
+        exit.setPreferredSize( buttonSize );
+        exit.addActionListener( new ActionListener() {
+                public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.exitToHome( panel );
+                }
+            }
+        );
+        c.gridx = 0;
+        c.gridy = i + 2;
         menuPanel.add( exit, c );
 
         menuPane.getViewport().add( menuPanel, null);
         c.gridx = 1;
         c.gridy = 0;
         panel.add( menuPane, c );
+    }
+
+    JPanel closePanel = new JPanel();
+    public void drawClosePanel(){
+        closePanel.removeAll();
+        closePanel.repaint();
+        closePanel.revalidate();
+
+        closePanel.setPreferredSize( rightPanelSize );
+        closePanel.setLayout( grid );
+        
+        JButton splitBillLabel = new JButton("Split Bill");
+        splitBillLabel.setPreferredSize(buttonSize);
+        c.gridx = 0;
+        c.gridy = 0;
+        closePanel.add( splitBillLabel, c );
+        
+        JTextField splitNum = new JTextField("1");
+        splitNum.setHorizontalAlignment( SwingConstants.CENTER );
+        splitNum.setPreferredSize(buttonSize);
+        c.gridx = 0;
+        c.gridy = 1;
+        closePanel.add( splitNum, c );
+
+        JButton printReceiptBtn = new JButton("Print Receipt");
+        printReceiptBtn.setPreferredSize(buttonSize);
+        c.gridx = 0;
+        c.gridy = 2;
+        closePanel.add( printReceiptBtn, c );
+
+        JButton closeTableBtn = new JButton("Close Table");
+        closeTableBtn.setPreferredSize(buttonSize);
+        c.gridx = 0;
+        c.gridy = 3;
+        closePanel.add( closeTableBtn, c );
+
+        JButton back = new JButton("Back");
+        back.setPreferredSize( buttonSize );
+        back.addActionListener( new ActionListener() {
+                public void actionPerformed( ActionEvent e ){
+                    menuPane.setVisible(true);
+                    closePanel.setVisible(false);
+                }
+            }
+        );
+        c.gridx = 0;
+        c.gridy = 4;
+        closePanel.add( back, c );
+
+        c.gridx = 1;
+        c.gridy = 0;
+        panel.add( closePanel, c );
     }
 
     public void setActiveTable( Table t ){

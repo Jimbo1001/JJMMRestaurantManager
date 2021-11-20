@@ -22,9 +22,11 @@ class Table{
      * is not open.
      */
     String tableActiveID;
+    Receipt receipt;
     
     /** The ctor for a table */
     Table(){
+        receipt = new Receipt();
         open = true;
         tableActiveID = "";
     }

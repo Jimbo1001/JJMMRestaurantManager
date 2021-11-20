@@ -81,12 +81,15 @@ class TablePage{
 
     boolean verbose = false;
 
-    Dimension buttonSize  = new Dimension( 100, 50 );
+    Dimension buttonSize;
 
     TablePage( int w, int h ){
         panel.setLayout( grid );
         panel.setBackground(Color.black);
         panel.setPreferredSize( new Dimension( w, h ) );
+
+        buttonSize = new Dimension( (int)(w/10), (int)(h/15) );
+
         drawButtonPanel(w, h);
         
         tableScrollPane.setLayout( new ScrollPaneLayout() );
@@ -104,10 +107,14 @@ class TablePage{
         int i = 0;
         for ( ; i < RestaurantManager.restaurant.tables.size(); i++ ){
             JButton tableBtn = new JButton( "Table " + (i + 1) );
+            tableBtn.setPreferredSize( buttonSize );
             final int ii = i;
 
             tableBtn.addActionListener( new ActionListener() {
                 public void actionPerformed( ActionEvent e ){
+                    panel.setVisible(false);
+                    RestaurantManager.serverPage.setActiveTable( RestaurantManager.restaurant.tables.get(ii) );
+                    RestaurantManager.serverPage.drawReceiptPanel();
                     RestaurantManager.serverPage.panel.setVisible( true );
                 }
             });

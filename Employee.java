@@ -19,6 +19,7 @@ class Employee {
     String name;
     String id;
     boolean admin;
+    //long timeWorked; tracks the amount of time a worker has
 
     Employee() {
         this.name = null;

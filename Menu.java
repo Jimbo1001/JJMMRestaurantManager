@@ -4,8 +4,8 @@ import java.io.IOException;
 
 class Menu {
     String name;
-    ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-    ArrayList<MenuItem> customItems = new ArrayList<MenuItem>();
+    ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();   //list of item
+    ArrayList<MenuItem> customItems = new ArrayList<MenuItem>(); //list of customization/extra items
     
     Menu(String name) {
         this.name = name;

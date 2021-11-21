@@ -35,7 +35,7 @@ class ServerPage{
         drawReceiptPanel( );
         drawMenuPanel( );
         drawClosePanel( );
-        closePanel.setVisible(false);
+        drawMenuCustomPanel( );
 
         panel.setBackground( Color.red );
     }
@@ -45,7 +45,6 @@ class ServerPage{
         receiptPanel.removeAll();
         receiptPanel.repaint();
         receiptPanel.revalidate();
-        receiptPanel.setBackground(Color.blue);
 
         receiptPane.setLayout( new ScrollPaneLayout() );
         receiptPane.setPreferredSize( leftPanelSize );
@@ -138,6 +137,12 @@ class ServerPage{
                         System.out.println("ok");
                         activeTable.receipt.itemList.add( RestaurantManager.getMenu().menuItems.get(ii) );
                         drawReceiptPanel();
+
+                        //drawMenuCustomPanel();
+                        menuCustomPane.setVisible(true);
+                        menuPane.setVisible(false);
+                        closePanel.setVisible(false);
+                        
                     }
                 }
             );
@@ -175,6 +180,55 @@ class ServerPage{
         c.gridx = 1;
         c.gridy = 0;
         panel.add( menuPane, c );
+        menuPane.setVisible(true);
+    }
+
+    JScrollPane menuCustomPane = new JScrollPane();
+    JPanel menuCustomPanel = new JPanel();
+    public void drawMenuCustomPanel(){
+        menuCustomPanel.removeAll();
+        menuCustomPanel.repaint();
+        menuCustomPanel.revalidate();
+
+        menuCustomPane.setLayout( new ScrollPaneLayout() );
+
+        menuCustomPanel.setPreferredSize( rightPanelSize );
+        menuCustomPanel.setLayout( grid );
+        int i = 0;
+        for (; i < RestaurantManager.getMenu().customItems.size(); i++){
+            JButton itemBtn = new JButton( RestaurantManager.getMenu().customItems.get(i).name );
+            itemBtn.setPreferredSize(buttonSize);
+            final int ii = i;
+            itemBtn.addActionListener( new ActionListener(){
+                    public void actionPerformed( ActionEvent e ){
+                        System.out.println("ok2");
+                        activeTable.receipt.itemList.add( RestaurantManager.getMenu().customItems.get(ii) );
+                        drawReceiptPanel();
+                    }
+                }
+            );
+            c.gridx = 0; 
+            c.gridy = i;
+            menuCustomPanel.add( itemBtn, c );
+        }
+
+        JButton doneBtn = new JButton("Done");
+        doneBtn.setPreferredSize( buttonSize );
+        doneBtn.addActionListener( new ActionListener() {
+                public void actionPerformed( ActionEvent e ){
+                    menuPane.setVisible(true);
+                    menuCustomPane.setVisible(false);
+                }
+            }
+        );
+        c.gridx = 0;
+        c.gridy = i + 2;
+        menuCustomPanel.add( doneBtn, c );
+
+        menuCustomPane.getViewport().add( menuCustomPanel, null);
+        c.gridx = 1;
+        c.gridy = 0;
+        panel.add( menuCustomPane, c );
     }
 
     JPanel closePanel = new JPanel();
@@ -227,6 +281,7 @@ class ServerPage{
         c.gridx = 1;
         c.gridy = 0;
         panel.add( closePanel, c );
+        closePanel.setVisible(false);
     }
 
     public void setActiveTable( Table t ){

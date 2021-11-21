@@ -114,6 +114,7 @@ class TablePage{
                     RestaurantManager.serverPage.setActiveTable( RestaurantManager.restaurant.tables.get(ii) );
                     RestaurantManager.serverPage.drawReceiptPanel();
                     RestaurantManager.serverPage.drawMenuPanel();
+                    RestaurantManager.serverPage.drawMenuCustomPanel();
                     RestaurantManager.serverPage.panel.setVisible( true );
                 }
             });

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 class MenuItem {
     String name;
     float price;
+    ArrayList<MenuCustomizationItem> menuCustomizationItems = new ArrayList<MenuCustomizationItem>();
     
     MenuItem(String name, float price ) {
         this.name = name;

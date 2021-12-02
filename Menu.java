@@ -54,7 +54,7 @@ class Menu {
 
     public boolean WriteToMenu(Menu menu) { //should run whenever something is added to the menu
         try {
-            FileWriter myWriter = new FileWriter("Menu.txt");//"C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Menu.txt"); //want to change to github location
+            FileWriter myWriter = new FileWriter("Menu.txt");
             myWriter.write(menu.toString());
             myWriter.close();
             return true;

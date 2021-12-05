@@ -1,6 +1,7 @@
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,8 @@ class Login{
     GridBagConstraints c = new GridBagConstraints();
 
     boolean verbose = false;
+
+    static int mode = 0;
 
     Dimension buttonSize;
     Dimension idFieldSize;
@@ -27,7 +30,7 @@ class Login{
     }
 
     //init on first run
-    //these are only things that wont change
+    //these are things that wont need to be redrawn
     private void initPanel( int w, int h ){
         JButton clearBtn = new JButton( "Clear" );
         clearBtn.addActionListener( new ActionListener(){
@@ -50,9 +53,22 @@ class Login{
             public void actionPerformed( ActionEvent e ){
                 String input = idField.getText();
                 if ( RestaurantManager.restaurant.checkId( input ) ){
-                    RestaurantManager.tablePage.panel.setVisible( true );
-                    panel.setVisible( false );
-                    RestaurantManager.tablePage.drawTablePanel(ww, hh);
+                    switch (mode) {
+                        case 1: 
+                            //clock in
+                            RestaurantManager.exitToHome( panel );
+                            break;
+                        case 2: 
+                            //clock out
+                            RestaurantManager.exitToHome( panel );
+                            break;
+                        default:
+                            //sign in to table page
+                            RestaurantManager.tablePage.panel.setVisible( true );
+                            panel.setVisible( false );
+                            RestaurantManager.tablePage.drawTablePanel(ww, hh);
+                            break;
+                    } 
                 }
                 idField.setText( "" );
             }
@@ -165,6 +181,7 @@ class Login{
         exitBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
                 RestaurantManager.exitToHome( panel );
+                idField.setText( "" );
             }
         });
         exitBtn.setPreferredSize( buttonSize );
@@ -177,7 +194,4 @@ class Login{
         }
     }
     //changes visibilty based on user access
-    public void draw(){
-        idField.setText( "" );
-    } 
 }

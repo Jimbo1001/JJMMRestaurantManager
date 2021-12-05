@@ -99,11 +99,12 @@ class RestaurantManager{
         homePage.panel.setVisible(true);
     }
 
-    public static String FloattoString(Float f, boolean b) {
-        String num;
+    public static String floatToString(Float f, boolean b) {
+        String num = "";
         if (b) {
             num = "$";
         }
         num += String.format("%.02f", f);
+        return num;
     }
 }

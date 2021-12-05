@@ -19,9 +19,18 @@ class Menu {
         customItems.add( new MenuItem( "Tomato", 0f ) );
     }
     
-    /*public boolean addNewMenuItem(String name, float price){
-        //TODO
-    }*/
+    /*
+    Alphabetically order sort 
+    */
+
+    public int indexOfItem( MenuItem o, ArrayList<MenuItem> m ){
+        for (int i = 0; i < m.size(); i++ ){
+            if ( m.get(i).name.equals(o.name) ) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     /*public String toString() {
         String results = "MENU NAME: " + name;

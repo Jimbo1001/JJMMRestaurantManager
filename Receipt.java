@@ -47,5 +47,23 @@ public class Receipt{
     public float getTotal(){
         return calculateTotal();
     }
+    
+    /*
+    public float getSplitTax( int n ){
+        return 0f;
+    }
+
+    /*
+    public float getSplitSubTotal( int n ){
+        return 0f;
+    }
+    */
+
+    
+    /*
+    public float getSplitTotal( int n ){
+        return 0f;
+    }
+    */
 
 }

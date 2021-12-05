@@ -1,9 +1,3 @@
-/*import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.JList;*/
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +13,7 @@ class AdminPage{
         JButton employeeBtn              = new JButton( "Employees" );
         JButton menuBtn                  = new JButton( "Menu" );
         JButton menuItemBtn              = new JButton( "Items" );
-        JButton menuCustomizationItemBtn = new JButton( "Custom Items" );
+        JButton menuCustomizationItemBtn = new JButton( "Extras" );
         JButton exitBtn                  = new JButton( "Exit" );
         public void drawButtonPanel( Dimension panelSize, Dimension buttonSize ){
             buttonPanel.removeAll();
@@ -66,6 +60,7 @@ class AdminPage{
             c.gridy = 0;
             buttonPanel.add( menuBtn, c );
             
+            //JButton for making extras pane visible
             menuItemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
                         addNewEmployeePanel.setVisible(false);//pair 1-1/2
@@ -83,10 +78,11 @@ class AdminPage{
             c.gridx = 2;
             c.gridy = 0;
             buttonPanel.add( menuItemBtn, c );
-            //JButton menuCustomizationItemBtn = new JButton( "Custom Items" );
+
+            //JButton for exiting to home page
             exitBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
-                        RestaurantManager.exitToHome(panel);
+                        RestaurantManager.exitToHome( panel );
                     }
                 }
             );
@@ -184,6 +180,15 @@ class AdminPage{
             displayPanel.setLayout(grid);
             for (int i = 0; i < RestaurantManager.restaurant.employees.size(); i++){
                 JButton empBtn = new JButton( RestaurantManager.restaurant.employees.get(i).name ); 
+                final int ii = i;
+                empBtn.addActionListener( new ActionListener(){
+                    public void actionPerformed( ActionEvent e ){
+                        /*String name  = RestaurantManager.restaurant.employees.get(ii).name;
+                        String price = 
+                        addNewEmployeeNameField.setText(""); // clear text
+                        addNewEmployeeIDField.setText(""); // clear text*/
+                    }
+                });
                 c.gridx = 0;
                 c.gridy = i;
                 displayPanel.add(empBtn, c);
@@ -236,7 +241,14 @@ class AdminPage{
                         if ( isNumeric( addMenuItemPriceField.getText() ) && !addNewMenuItemNameField.getText().equals("") ) {
                             String name = addNewMenuItemNameField.getText();
                             float price = Float.parseFloat( addMenuItemPriceField.getText() );
-                            RestaurantManager.restaurant.menu.menuItems.add( new MenuItem( name, price ));
+                            MenuItem m = new MenuItem( name, price );
+                            int i = RestaurantManager.restaurant.menu.indexOfItem( m, RestaurantManager.restaurant.menu.menuItems );
+                            if ( i == -1 ) {
+                                RestaurantManager.restaurant.menu.menuItems.add( m );
+                            } else {
+                                RestaurantManager.restaurant.menu.menuItems.remove(i);
+                                RestaurantManager.restaurant.menu.menuItems.add( m );
+                            }
                             drawAdminPage();
                         }
                         addNewMenuItemNameField.setText("");
@@ -283,13 +295,17 @@ class AdminPage{
             for (int i = 0; i < RestaurantManager.getMenu().menuItems.size(); i++ ){
                 //JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name );
                 JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name 
-                                        + " " +  RestaurantManager.getMenu().menuItems.get(i).price);
-                /*itemBtn.addActionListener( new ActionListener(){
+                                        + " " +  RestaurantManager.floatToString( RestaurantManager.getMenu().menuItems.get(i).price, false) );
+                final int ii = i;
+                itemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        
+                        String name = RestaurantManager.getMenu().menuItems.get(ii).name;
+                        String price = RestaurantManager.getMenu().menuItems.get(ii).price + "";
+                        addNewMenuItemNameField.setText(name);
+                        addMenuItemPriceField.setText(price);
                     }
                 }
-                );*/
+                );
                 c.gridx = 0;
                 c.gridy = i;
                 menuPanel.add( itemBtn, c );
@@ -334,14 +350,30 @@ class AdminPage{
             enterNewMenuCustomBtn.setPreferredSize(buttonSize); 
             enterNewMenuCustomBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
+                        //first check if the price is numeric and the name is not blank
                         if ( isNumeric( addMenuItemCustomPriceField.getText() ) && !addNewMenuItemCustomNameField.getText().equals("") ) {
+                            //name of the new menu item from text field 
                             String name = addNewMenuItemCustomNameField.getText();
+                            //price from price text box
                             float price = Float.parseFloat( addMenuItemCustomPriceField.getText() );
-                            RestaurantManager.restaurant.menu.customItems.add( new MenuItem( name, price ));
+                            //RestaurantManager.restaurant.menu.customItems.add( new MenuItem( name, price ));
+                            //
+                            //new menu item object from input text box values
+                            MenuItem m = new MenuItem( name, price );
+                            //index of item to remove if the same item exists
+                            int i = RestaurantManager.restaurant.menu.indexOfItem( m, RestaurantManager.restaurant.menu.customItems );
+                            if ( i == -1 ) {
+                                RestaurantManager.restaurant.menu.customItems.add( m );
+                            } else {
+                                RestaurantManager.restaurant.menu.customItems.remove(i);
+                                RestaurantManager.restaurant.menu.customItems.add( m );
+                            }
+                            //
                             drawAdminPage();
                         }
                         addNewMenuItemCustomNameField.setText("");
                         addMenuItemCustomPriceField.setText("");
+
                     }
                 }
             );
@@ -369,12 +401,16 @@ class AdminPage{
                 //JButton itemBtn = new JButton( RestaurantManager.getMenu().menuItems.get(i).name );
                 JButton customItemBtn = new JButton( RestaurantManager.getMenu().customItems.get(i).name 
                                         + " " +  RestaurantManager.getMenu().customItems.get(i).price);
-                /*customItemBtn.addActionListener( new ActionListener(){
+                final int ii = i;
+                customItemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        
+                        String name = RestaurantManager.getMenu().customItems.get(ii).name;
+                        String price = RestaurantManager.getMenu().customItems.get(ii).price + "";
+                        addNewMenuItemCustomNameField.setText( name );
+                        addMenuItemCustomPriceField.setText( price);
                     }
                 }
-                );*/
+                );
                 c.gridx = 0;
                 c.gridy = i;
                 menuCustomPanel.add( customItemBtn, c );

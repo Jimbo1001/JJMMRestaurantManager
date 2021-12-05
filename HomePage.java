@@ -12,7 +12,7 @@ public class HomePage{
     Dimension buttonSize;
 
     HomePage( int w, int h){
-        buttonSize = new Dimension( (int)w/12, (int)h/12 );
+        buttonSize = new Dimension( (int)w/6, (int)h/6 );
         panel.setLayout( grid );
         panel.setPreferredSize( new Dimension( w, h ) );
         panel.setBackground(Color.black);
@@ -25,8 +25,10 @@ public class HomePage{
         infoPanel.setVisible(false);
         
         JButton signBtn = new JButton("Sign In");
+        signBtn.setPreferredSize( buttonSize);
         signBtn.addActionListener( new ActionListener(){
                 public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.login.mode = 0; //sign in
                     panel.setVisible(false);
                     RestaurantManager.login.panel.setVisible(true);
                 }
@@ -37,8 +39,10 @@ public class HomePage{
         panel.add(signBtn, c);
 
         JButton clockInBtn = new JButton("Clock In");
+        clockInBtn.setPreferredSize( buttonSize);
         clockInBtn.addActionListener( new ActionListener(){
                 public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.login.mode = 1; //clock in
                     panel.setVisible(false);
                     RestaurantManager.login.panel.setVisible(true);
                 }
@@ -49,8 +53,10 @@ public class HomePage{
         panel.add(clockInBtn, c);
 
         JButton clockOutBtn = new JButton("Clock Out");
+        clockOutBtn.setPreferredSize( buttonSize);
         clockOutBtn.addActionListener( new ActionListener(){
                 public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.login.mode = 2; //clock out
                     panel.setVisible(false);
                     RestaurantManager.login.panel.setVisible(true);
                 }
@@ -61,6 +67,7 @@ public class HomePage{
         panel.add(clockOutBtn, c);
 
         JButton infoBtn = new JButton("Info");
+        infoBtn.setPreferredSize( buttonSize);
         infoBtn.addActionListener( new ActionListener(){
                 public void actionPerformed( ActionEvent e ){
                     signBtn.setVisible(false);

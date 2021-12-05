@@ -59,7 +59,7 @@ class ServerPage{
                 c.gridx = 0;
                 c.gridy = i;
                 receiptPanel.add( itemName, c );
-                JLabel itemPrice = new JLabel( "" +activeTable.receipt.itemList.get(i).price );
+                JLabel itemPrice = new JLabel( "" + RestaurantManager.floatToString( activeTable.receipt.itemList.get(i).price, false) );
                 itemPrice.setHorizontalAlignment( SwingConstants.RIGHT );
                 itemPrice.setPreferredSize( labelSize );
                 c.gridx = 1;
@@ -73,7 +73,7 @@ class ServerPage{
             c.gridy = i + 1;
             receiptPanel.add( subTotalLabel1, c );
 
-            JLabel subTotalLabel2 = new JLabel( "" + activeTable.receipt.getSubTotal() );
+            JLabel subTotalLabel2 = new JLabel( "" + RestaurantManager.floatToString( activeTable.receipt.getSubTotal(), true ) );
             subTotalLabel2.setHorizontalAlignment( SwingConstants.RIGHT);
             subTotalLabel2.setPreferredSize( labelSize );
             c.gridx = 1;
@@ -87,7 +87,7 @@ class ServerPage{
             c.gridy = i + 2;
             receiptPanel.add( taxLabel1, c );
 
-            JLabel taxLabel2 = new JLabel( "" + activeTable.receipt.getTax() );
+            JLabel taxLabel2 = new JLabel( "" + RestaurantManager.floatToString( activeTable.receipt.getTax(), true ) );
             taxLabel2.setHorizontalAlignment( SwingConstants.RIGHT);
             taxLabel2.setPreferredSize( labelSize );
             c.gridx = 1;
@@ -101,7 +101,7 @@ class ServerPage{
             c.gridy = i + 3;
             receiptPanel.add( totalLabel1, c );
 
-            JLabel totalLabel2 = new JLabel( "" + activeTable.receipt.getTotal() );
+            JLabel totalLabel2 = new JLabel( "" + RestaurantManager.floatToString( activeTable.receipt.getTotal(), true ) );
             totalLabel2.setHorizontalAlignment( SwingConstants.RIGHT);
             totalLabel2.setPreferredSize( labelSize );
             c.gridx = 1;

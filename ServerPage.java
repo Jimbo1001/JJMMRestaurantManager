@@ -17,7 +17,7 @@ class ServerPage{
     Dimension leftPanelSize;
     Dimension rightPanelSize;
     Dimension labelSize;
-    ServerPage( int w, int h){
+    ServerPage( int w, int h ){
         activeTable = new Table();
         int leftPanelWidth = (int)(w/1.5);
         int secondPanelWidth = (int)(w/4);
@@ -252,7 +252,7 @@ class ServerPage{
         JButton splitBillBtn = new JButton("Split Bill");
         splitBillBtn.addActionListener( new ActionListener(){
                 public void actionPerformed( ActionEvent e ){
-                    
+
                 }
             }
         );

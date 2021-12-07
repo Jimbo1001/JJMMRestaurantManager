@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 class TextReader {
-
-    public ArrayList<MenuItem> ReadMenuItems ( Menu menu ) {
+    /*
+    public static ArrayList<MenuItem> ReadMenuItems ( Menu menu ) {
         String content = "";
         try {
             File menuTxt = new File("Menu.txt");
@@ -33,7 +33,7 @@ class TextReader {
         return menuItems;
     }
 
-    public ArrayList<MenuItem> ReadCustomItems ( Menu menu ) {
+    public static ArrayList<MenuItem> ReadCustomItems ( Menu menu ) {
         String content = "";
         try {
             File menuTxt = new File("Menu.txt");
@@ -61,7 +61,7 @@ class TextReader {
         return customItems;
     }
 
-    public ArrayList<Integer> ReadLogin() {
+    public static ArrayList<Integer> ReadLogin() {
         String content = "";
         try {
             File LoginTxt = new File("Login.txt");
@@ -82,5 +82,5 @@ class TextReader {
             }
         }
         return logins;
-    }
+    }*/
 }

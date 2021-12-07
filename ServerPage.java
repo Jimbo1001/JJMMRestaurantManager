@@ -66,6 +66,7 @@ class ServerPage{
                 c.gridy = i;
                 receiptPanel.add( itemPrice, c );
             }
+            
             JLabel subTotalLabel1 = new JLabel( "Sub Total: " );
             subTotalLabel1.setHorizontalAlignment( SwingConstants.LEFT);
             subTotalLabel1.setPreferredSize( labelSize );
@@ -119,10 +120,15 @@ class ServerPage{
     JScrollPane menuPane = new JScrollPane();
     JPanel menuPanel = new JPanel();
     public void drawMenuPanel(){
+        //Remove, repaint, revalidate
         menuPanel.removeAll();
         menuPanel.repaint();
         menuPanel.revalidate();
 
+        //sort the menu items
+        RestaurantManager.getMenu().menuItems = RestaurantManager.getMenu().sortByName( RestaurantManager.getMenu().menuItems, "ascending" );
+        
+        //set the layout of the menu pane
         menuPane.setLayout( new ScrollPaneLayout() );
 
         menuPanel.setPreferredSize( rightPanelSize );
@@ -189,6 +195,9 @@ class ServerPage{
         menuCustomPanel.removeAll();
         menuCustomPanel.repaint();
         menuCustomPanel.revalidate();
+        
+        //sort the menu items
+        RestaurantManager.getMenu().customItems = RestaurantManager.getMenu().sortByName( RestaurantManager.getMenu().customItems, "ascending" );
 
         menuCustomPane.setLayout( new ScrollPaneLayout() );
 
@@ -240,11 +249,17 @@ class ServerPage{
         closePanel.setPreferredSize( rightPanelSize );
         closePanel.setLayout( grid );
         
-        JButton splitBillLabel = new JButton("Split Bill");
-        splitBillLabel.setPreferredSize(buttonSize);
+        JButton splitBillBtn = new JButton("Split Bill");
+        splitBillBtn.addActionListener( new ActionListener(){
+                public void actionPerformed( ActionEvent e ){
+                    
+                }
+            }
+        );
+        splitBillBtn.setPreferredSize(buttonSize);
         c.gridx = 0;
         c.gridy = 0;
-        closePanel.add( splitBillLabel, c );
+        closePanel.add( splitBillBtn, c );
         
         JTextField splitNum = new JTextField("1");
         splitNum.setHorizontalAlignment( SwingConstants.CENTER );

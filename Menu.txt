@@ -1,1 +1,1 @@
-MENU NAME*MenuTest~burger,5.99*cheese,0.99*tomato,1.09~sandwich,6.99~
+MENUNAME*MenuTest~burger,5.99*cheese,0.99*tomato,1.09~sandwich,6.99

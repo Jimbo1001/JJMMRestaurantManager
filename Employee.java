@@ -19,7 +19,8 @@ class Employee {
     String name;
     String id;
     boolean admin;
-    //long timeWorked; tracks the amount of time a worker has
+    long timeWorked; //tracks the amount of time a worker has
+    private long  startTime;
 
     Employee() {
         this.name = null;

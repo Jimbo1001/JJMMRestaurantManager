@@ -17,6 +17,8 @@ class RestaurantManager{
     static ServerPage serverPage;
     //Admin Page
     static AdminPage adminPage;
+    //Printer Page
+    static PrinterPage printerPage;
     //Jframe for GUI
     JFrame frame;
     GridBagLayout grid   = new GridBagLayout();
@@ -43,6 +45,7 @@ class RestaurantManager{
         serverPage = new ServerPage( pw, ph );
         adminPage = new AdminPage( pw, ph );
         homePage = new HomePage( pw, ph);
+        printerPage = new PrinterPage( pw, ph);
        
         frame = new JFrame();
         frame.setLayout( grid);
@@ -89,6 +92,11 @@ class RestaurantManager{
         c.gridy = 0;
         adminPage.panel.setVisible( false );
         frame.add( adminPage.panel, c );
+
+        c.gridx = 0;
+        c.gridy = 0;
+        printerPage.panel.setVisible( false );
+        frame.add( printerPage.panel, c );
         if ( verbose ){
             System.out.println( "Screens Initialized" );
         }

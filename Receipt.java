@@ -5,7 +5,6 @@ public class Receipt{
     float tax;
     float total;
 
-
     Receipt(){
         subTotal = 0;
         tax = 0;
@@ -50,7 +49,9 @@ public class Receipt{
     
     /*
     public float getSplitTax( int n ){
-        return 0f;
+        float t = calculateTax();
+        t = t/(float)n;
+        return t;
     }
 
     /*
@@ -62,6 +63,7 @@ public class Receipt{
     
     /*
     public float getSplitTotal( int n ){
+
         return 0f;
     }
     */

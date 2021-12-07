@@ -57,10 +57,12 @@ class Login{
                         case 1: 
                             //clock in
                             RestaurantManager.exitToHome( panel );
+                            //start tracking 
                             break;
                         case 2: 
                             //clock out
                             RestaurantManager.exitToHome( panel );
+                            //stop tracking
                             break;
                         default:
                             //sign in to table page

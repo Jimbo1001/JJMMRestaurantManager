@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.io.FileWriter;
 import java.io.IOException; 
 
@@ -17,11 +18,47 @@ class Menu {
         customItems.add( new MenuItem( "Extra Cheese", 0.99f ) );
         customItems.add( new MenuItem( "Bacon", 1.99f ) );
         customItems.add( new MenuItem( "Tomato", 0f ) );
+        /*customItems = TextReader.ReadCustomItems( new Menu("s") );
+        menuItems = TextReader.ReadMenuItems( new Menu("s") );*/
     }
     
     /*
     Alphabetically order sort 
     */
+    // Returns a sorted array list of menuItems either in ascending or descending
+	// order of the names
+	public static ArrayList<MenuItem> sortByName(ArrayList<MenuItem> items,
+			String sortBy) {
+		// using lambda expression to sort in ascending order
+		if (sortBy.toLowerCase() == "descending") {
+			Collections.sort(items, (p1, p2) -> {
+				return p2.name.compareTo(p1.name);
+			});
+		}
+		// sorting in ascending order by default
+		else {
+			Collections.sort(items, (p1, p2) -> {
+				return p1.name.compareTo(p2.name);
+			});
+		}
+		return items;
+	}
+
+	// Returns a sorted array list of menuItems either in ascending or descending
+	// order of the prices
+	public static ArrayList<MenuItem> sortByPrice(ArrayList<MenuItem> menuItems,
+			String sortBy) {
+		// using lambda expression to sort in ascending order
+		if (sortBy.toLowerCase() == "descending") {
+			Collections.sort(menuItems, (p1, p2) -> Float.compare(p2.price, p1.price));
+		}
+		// sorting in ascending order by default
+		else {
+			Collections.sort(menuItems, (p1, p2) -> Float.compare(p1.price, p2.price));
+		}
+		return menuItems;
+	}
+    //--------------------END of sorting----------------------
 
     public int indexOfItem( MenuItem o, ArrayList<MenuItem> m ){
         for (int i = 0; i < m.size(); i++ ){

@@ -12,8 +12,7 @@ class AdminPage{
     JPanel buttonPanel = new JPanel();
         JButton employeeBtn              = new JButton( "Employees" );
         JButton menuBtn                  = new JButton( "Menu" );
-        JButton menuItemBtn              = new JButton( "Items" );
-        JButton menuCustomizationItemBtn = new JButton( "Extras" );
+        JButton menuItemBtn              = new JButton( "Extras" );
         JButton exitBtn                  = new JButton( "Exit" );
         public void drawButtonPanel( Dimension panelSize, Dimension buttonSize ){
             buttonPanel.removeAll();
@@ -139,7 +138,7 @@ class AdminPage{
             c.gridy = 5;
             addNewEmployeePanel.add( isAdmin, c );
 
-            enterNewEmployeeBtn = new JButton("add");
+            enterNewEmployeeBtn = new JButton("Add New");
             enterNewEmployeeBtn.setPreferredSize( buttonSize );
             enterNewEmployeeBtn.addActionListener( new ActionListener(){
                     public void actionPerformed(ActionEvent e){
@@ -147,7 +146,7 @@ class AdminPage{
                         String id = (String)addNewEmployeeIDField.getText();
                         boolean admin = isAdmin.isSelected();
                         Employee newEmp = new Employee(name, id, admin);
-                        if ( !RestaurantManager.restaurant.checkEmployee( newEmp ) ){
+                        if ( !RestaurantManager.restaurant.checkEmployee( newEmp ) && !RestaurantManager.restaurant.checkId( newEmp.id ) ){
                             RestaurantManager.getRestaurant().employees.add( newEmp );
                         }
                         addNewEmployeeNameField.setText(""); // clear text
@@ -183,10 +182,12 @@ class AdminPage{
                 final int ii = i;
                 empBtn.addActionListener( new ActionListener(){
                     public void actionPerformed( ActionEvent e ){
-                        /*String name  = RestaurantManager.restaurant.employees.get(ii).name;
-                        String price = 
-                        addNewEmployeeNameField.setText(""); // clear text
-                        addNewEmployeeIDField.setText(""); // clear text*/
+                        String name   = RestaurantManager.restaurant.employees.get(ii).name;
+                        String id     = RestaurantManager.restaurant.employees.get(ii).id;
+                        boolean admin = RestaurantManager.restaurant.employees.get(ii).admin;
+                        addNewEmployeeNameField.setText( name ); 
+                        addNewEmployeeIDField.setText( id ); 
+                        isAdmin.setSelected( admin );
                     }
                 });
                 c.gridx = 0;
@@ -234,7 +235,7 @@ class AdminPage{
             c.gridy = 3;
             newMenuItemPanel.add( addMenuItemPriceField, c );
 
-            enterNewMenuItemBtn = new JButton("Add New Menu Item");
+            enterNewMenuItemBtn = new JButton("Add New");
             enterNewMenuItemBtn.setPreferredSize( buttonSize );
             enterNewMenuItemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed(ActionEvent e){
@@ -287,7 +288,10 @@ class AdminPage{
             menuPanel.removeAll();
             menuPanel.repaint();
             menuPanel.revalidate();
-            
+
+            //sort the menu items
+            RestaurantManager.getMenu().menuItems = RestaurantManager.getMenu().sortByName( RestaurantManager.getMenu().menuItems, "ascending" );
+
             menuPane.setLayout( new ScrollPaneLayout() );
             
             menuPanel.setLayout(grid);
@@ -395,6 +399,9 @@ class AdminPage{
             
             menuCustomPane.setLayout( new ScrollPaneLayout() );
             
+            //sort the custom items
+            RestaurantManager.getMenu().customItems = RestaurantManager.getMenu().sortByName( RestaurantManager.getMenu().customItems, "ascending" );
+
             menuCustomPanel.setLayout(grid);
             menuCustomPane.setPreferredSize( panelSize );
             for (int i = 0; i < RestaurantManager.getMenu().customItems.size(); i++ ){

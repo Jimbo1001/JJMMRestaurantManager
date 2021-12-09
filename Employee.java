@@ -14,13 +14,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Instant;
 
 class Employee {
     String name;
     String id;
     boolean admin;
     long timeWorked; //tracks the amount of time a worker has
-    private long  startTime;
+    private Instant startTime;
 
     Employee() {
         this.name = null;
@@ -44,6 +45,22 @@ class Employee {
 
     public void setID(String id) {
         this.id = id;
+    }
+
+    public Instant getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime ( Instant startTime ) {
+        this.startTime = startTime;
+    }
+
+    public long getTimeWorked() {
+        return timeWorked;
+    }
+
+    public void setTimeWorked( long timeWorked ) {
+        this.timeWorked = timeWorked;
     }
 
     public String toString() {

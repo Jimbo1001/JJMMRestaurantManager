@@ -21,8 +21,13 @@ class Employee {
     String id;
     boolean admin;
     long timeWorked; //tracks the amount of time a worker has
+<<<<<<< HEAD
     private Instant startTime;
 
+=======
+    private long  startTime;
+    
+>>>>>>> 47357ee5cbac0ed6397d78c97555ff38eb0fe182
     Employee() {
         this.name = null;
         this.id = null;

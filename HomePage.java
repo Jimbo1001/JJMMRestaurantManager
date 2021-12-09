@@ -15,7 +15,7 @@ public class HomePage{
         buttonSize = new Dimension( (int)w/6, (int)h/6 );
         panel.setLayout( grid );
         panel.setPreferredSize( new Dimension( w, h ) );
-        panel.setBackground(Color.black);
+        //panel.setBackground(Color.black);
 
         infoPanel.setLayout( grid );
         infoPanel.setPreferredSize( new Dimension( w - (int)(w/10), h - (int)(h/10) ) );

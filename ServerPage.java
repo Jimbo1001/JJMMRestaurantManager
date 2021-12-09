@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class ServerPage{
+    static int tableIndex;
     JPanel panel = new JPanel();
 
     GridBagLayout grid = new GridBagLayout();
@@ -18,6 +19,7 @@ class ServerPage{
     Dimension rightPanelSize;
     Dimension labelSize;
     ServerPage( int w, int h ){
+        tableIndex = 0;
         activeTable = new Table();
         int leftPanelWidth = (int)(w/1.5);
         int secondPanelWidth = (int)(w/4);
@@ -65,6 +67,8 @@ class ServerPage{
                 c.gridx = 1;
                 c.gridy = i;
                 receiptPanel.add( itemPrice, c );
+                //remove item
+                //JButton remove = new JButton("" + );
             }
             
             JLabel subTotalLabel1 = new JLabel( "Sub Total: " );
@@ -248,25 +252,6 @@ class ServerPage{
 
         closePanel.setPreferredSize( rightPanelSize );
         closePanel.setLayout( grid );
-        
-        JButton splitBillBtn = new JButton("Split Bill");
-        splitBillBtn.addActionListener( new ActionListener(){
-                public void actionPerformed( ActionEvent e ){
-
-                }
-            }
-        );
-        splitBillBtn.setPreferredSize(buttonSize);
-        c.gridx = 0;
-        c.gridy = 0;
-        closePanel.add( splitBillBtn, c );
-        
-        JTextField splitNum = new JTextField("1");
-        splitNum.setHorizontalAlignment( SwingConstants.CENTER );
-        splitNum.setPreferredSize(buttonSize);
-        c.gridx = 0;
-        c.gridy = 1;
-        closePanel.add( splitNum, c );
 
         JButton printReceiptBtn = new JButton("Print Receipt");
         printReceiptBtn.setPreferredSize(buttonSize);
@@ -276,6 +261,13 @@ class ServerPage{
 
         JButton closeTableBtn = new JButton("Close Table");
         closeTableBtn.setPreferredSize(buttonSize);
+        closeTableBtn.addActionListener( new ActionListener(){
+                public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.restaurant.tables.get(tableIndex).receipt = new Receipt();
+                    RestaurantManager.exitToHome( panel );
+                }
+            }
+        );
         c.gridx = 0;
         c.gridy = 3;
         closePanel.add( closeTableBtn, c );

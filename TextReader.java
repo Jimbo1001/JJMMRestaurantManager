@@ -61,7 +61,7 @@ class TextReader {
         return customItems;
     }
 
-    public static ArrayList<Integer> ReadLogin() {
+    public static ArrayList<Integer> ReadLogin() { //reads as employee.name,employee.id for each item
         String content = "";
         try {
             File LoginTxt = new File("Login.txt");

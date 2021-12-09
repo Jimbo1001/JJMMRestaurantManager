@@ -71,7 +71,7 @@ class Employee {
                 content = br.readLine();
             }
             FileWriter myWriter = new FileWriter("Login.txt");
-            myWriter.write(content + employee.id + "*");
+            myWriter.write(content +employee.name + "," + employee.id + "*");
             myWriter.close();
             return true;
         } catch (IOException e) {

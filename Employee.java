@@ -64,13 +64,13 @@ class Employee {
 
     public boolean WritetoLogin(Employee employee) {
         try {
-            FileReader fr = new FileReader("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
+            FileReader fr = new FileReader("Login.txt");
             BufferedReader br = new BufferedReader(fr);
             String content = "";
             if (br.ready()) {
                 content = br.readLine();
             }
-            FileWriter myWriter = new FileWriter("C:/Users/jpsch/JJMMRestaurantManager/JJMMRestaurantManager/Login.txt");
+            FileWriter myWriter = new FileWriter("Login.txt");
             myWriter.write(content + employee.id + "*");
             myWriter.close();
             return true;

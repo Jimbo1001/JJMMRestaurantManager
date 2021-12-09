@@ -15,6 +15,7 @@ class TablePage{
         JButton adminBtn = new JButton( "Admin" );
         private void drawButtonPanel(int w, int h){
             buttonPanel.setLayout(grid);
+
             buttonPanel.setPreferredSize( new Dimension( w - (int)(w/1.5), h - (int)(h/25) ) );
             addBtn.setPreferredSize( buttonSize );
             addBtn.addActionListener( new ActionListener(){
@@ -111,6 +112,7 @@ class TablePage{
             tableBtn.addActionListener( new ActionListener() {
                 public void actionPerformed( ActionEvent e ){
                     panel.setVisible(false);
+                    RestaurantManager.serverPage.tableIndex = ii;
                     RestaurantManager.serverPage.setActiveTable( RestaurantManager.restaurant.tables.get(ii) );
                     RestaurantManager.serverPage.drawReceiptPanel();
                     RestaurantManager.serverPage.drawMenuPanel();

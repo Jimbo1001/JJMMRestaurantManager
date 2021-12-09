@@ -19,5 +19,7 @@ class PrinterPage{
         panel.removeAll();
         panel.repaint();
         panel.revalidate();
+
+        
     }
 }

@@ -2,6 +2,7 @@ import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+//import javax.swing.RoundedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,12 +58,12 @@ class Login{
                         case 1: 
                             //clock in
                             RestaurantManager.exitToHome( panel );
-                            //start tracking 
+                            //start tracking hours
                             break;
                         case 2: 
                             //clock out
                             RestaurantManager.exitToHome( panel );
-                            //stop tracking
+                            //stop tracking hours
                             break;
                         default:
                             //sign in to table page
@@ -73,6 +74,7 @@ class Login{
                     } 
                 }
                 idField.setText( "" );
+                System.out.println("Enter button pressed.");
             }
         });
         c.gridx = 2;
@@ -179,6 +181,18 @@ class Login{
         c.gridy = 3;
         panel.add( btn9, c );
 
+        JButton btn0 = new JButton( "0" );
+        //btn0.setBorder(new RoundedBorder(10));
+        btn0.addActionListener( new ActionListener(){
+            public void actionPerformed( ActionEvent e ){
+                idField.setText( "" + idField.getText() + 0 );//add 0 to the id field
+            }
+        });
+        btn0.setPreferredSize( buttonSize );
+        c.gridx = 1;
+        c.gridy = 4;
+        panel.add( btn0, c );
+
         JButton exitBtn = new JButton( "Exit" );
         exitBtn.addActionListener( new ActionListener(){
             public void actionPerformed( ActionEvent e ){
@@ -188,7 +202,7 @@ class Login{
         });
         exitBtn.setPreferredSize( buttonSize );
         c.gridx = 1;
-        c.gridy = 4;
+        c.gridy = 5;
         panel.add( exitBtn, c );
 
         if ( verbose ){

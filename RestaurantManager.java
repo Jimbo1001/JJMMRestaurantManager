@@ -1,5 +1,7 @@
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+
+import javax.swing.UIManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,9 +46,16 @@ class RestaurantManager{
         tablePage = new TablePage( pw, ph );
         serverPage = new ServerPage( pw, ph );
         adminPage = new AdminPage( pw, ph );
-        homePage = new HomePage( pw, ph);
-        printerPage = new PrinterPage( pw, ph);
-       
+        homePage = new HomePage( pw, ph );
+        printerPage = new PrinterPage( pw, ph );
+
+        //set the feel and look
+        /*try { 
+            UIManager.setLookAndFeel( "javax.swing.plaf.nimbus.NimbusLookAndFeel"); //UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
         frame = new JFrame();
         frame.setLayout( grid);
         frame.setMinimumSize( new Dimension( w, h ) );

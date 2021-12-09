@@ -21,7 +21,7 @@ class Employee {
     boolean admin;
     long timeWorked; //tracks the amount of time a worker has
     private long  startTime;
-
+    
     Employee() {
         this.name = null;
         this.id = null;

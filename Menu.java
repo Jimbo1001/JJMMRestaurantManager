@@ -82,11 +82,6 @@ class Menu {
         String results = "";
         for ( int i = 0; i < menuItems.size(); i++ ) {
             results += menuItems.get( i ).name + "," + menuItems.get( i ).price;
-            /*if(menuItems.get(i).menuCustomizationItems != null) {
-                for (int j = 0; j < menuItems.get(i).menuCustomizationItems.size(); j++) {
-                    results += "*" + menuItems.get(i).menuCustomizationItems.get(j).name + "," + menuItems.get(i).menuCustomizationItems.get(j).price;
-                }
-            }*/
             results += "*";
         }
         results += "~";

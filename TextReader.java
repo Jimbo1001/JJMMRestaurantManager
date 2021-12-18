@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 class TextReader {
-    /*
+    
     public static ArrayList<MenuItem> ReadMenuItems ( Menu menu ) {
         String content = "";
         try {
@@ -82,5 +82,5 @@ class TextReader {
             }
         }
         return logins;
-    }*/
+    }
 }

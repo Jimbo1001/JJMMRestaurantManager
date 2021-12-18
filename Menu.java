@@ -18,6 +18,7 @@ class Menu {
         customItems.add( new MenuItem( "Extra Cheese", 0.99f ) );
         customItems.add( new MenuItem( "Bacon", 1.99f ) );
         customItems.add( new MenuItem( "Tomato", 0f ) );
+
         /*customItems = TextReader.ReadCustomItems( new Menu("s") );
         menuItems = TextReader.ReadMenuItems( new Menu("s") );*/
     }
@@ -99,9 +100,9 @@ class Menu {
             myWriter.write(menu.toString());
             myWriter.close();
             return true;
-          } catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
-          }
+        }
     }
  }

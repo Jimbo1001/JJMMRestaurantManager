@@ -206,7 +206,7 @@ class AdminPage{
         JTextField addNewMenuItemNameField = new JTextField("");
         JLabel addNewMenuItemPriceLabel    = new JLabel( "Enter new menu item price:" );
         JTextField addMenuItemPriceField   = new JTextField("");
-        JButton enterNewMenuItemBtn;//        = new JButton( "Add New" );
+        JButton enterNewMenuItemBtn        = new JButton( "Add New" );
         private void drawNewMenuItemPanel( Dimension panelSize, Dimension labelSize, Dimension buttonSize ){
             newMenuItemPanel.removeAll();
             newMenuItemPanel.repaint();
@@ -214,28 +214,27 @@ class AdminPage{
             //new menu item panel
             newMenuItemPanel.setLayout( grid );
             newMenuItemPanel.setPreferredSize( panelSize );
-        
+
             addNewMenuItemNameLabel.setPreferredSize( labelSize );
             c.gridx = 0;
-            c.gridy = 0;
+            c.gridy = 1;
             newMenuItemPanel.add( addNewMenuItemNameLabel, c );
 
             addNewMenuItemNameField.setPreferredSize( labelSize );
             c.gridx = 0;
-            c.gridy = 1;
+            c.gridy = 2;
             newMenuItemPanel.add( addNewMenuItemNameField, c );
 
             addNewMenuItemPriceLabel.setPreferredSize( labelSize );
             c.gridx = 0;
-            c.gridy = 2;
+            c.gridy = 3;
             newMenuItemPanel.add( addNewMenuItemPriceLabel, c );
 
             addMenuItemPriceField.setPreferredSize( labelSize );
             c.gridx = 0;
-            c.gridy = 3;
+            c.gridy = 4;
             newMenuItemPanel.add( addMenuItemPriceField, c );
 
-            enterNewMenuItemBtn = new JButton("Add New");
             enterNewMenuItemBtn.setPreferredSize( buttonSize );
             enterNewMenuItemBtn.addActionListener( new ActionListener(){
                     public void actionPerformed(ActionEvent e){
@@ -258,7 +257,7 @@ class AdminPage{
                 }
             );
             c.gridx = 0;
-            c.gridy = 4;
+            c.gridy = 5;
             newMenuItemPanel.add( enterNewMenuItemBtn, c );
             
             //add the panel to the option panel
@@ -424,10 +423,13 @@ class AdminPage{
             }
 
             menuCustomPane.getViewport().add( menuCustomPanel, null );
-            c.gridx = 1;
+            c.gridx = 0;
             c.gridy = 0;
             optionPanel.add( menuCustomPane, c );
         }
+
+        
+
         int secondPanelWidth;// = (int)(w/4);
         int leftPanelWidth;// = (int)(w/3);
         Dimension panelSize;// = new Dimension( w, h );
@@ -470,6 +472,8 @@ class AdminPage{
 
         newMenuItemCustomPanel.setVisible(false);//pair 3-1/2
         menuCustomPane.setVisible(false);//pair 3-2/2
+
+
         //Add Button Panel to panel
         c.gridx = 0;
         c.gridy = 0;
@@ -492,7 +496,10 @@ class AdminPage{
         drawMenuPanel( secondaryPanelSize );//pair 2-2/2
         //draw the new menu customization item panel
         drawNewMenuCustomItemPanel(leftPanelSize, labelSize, buttonSize);//pair 3-1/2
-        drawMenuCustomPanel(secondaryPanelSize);
+        //draw the edit menu divder panel
+        drawMenuCustomPanel(secondaryPanelSize);//pair 3-2/2
+
+        
     }
 
 }

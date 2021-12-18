@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 class MenuItem {
-    String name;
-    float price;
+    String name; //name of menu item
+    float price; //price of menu item
 
-    MenuItem(String name, float price ) {
+    MenuItem(String name, float price) {
         this.name = name;
         this.price = price;
     }

@@ -68,7 +68,18 @@ class ServerPage{
                 c.gridy = i;
                 receiptPanel.add( itemPrice, c );
                 //remove item
-                //JButton remove = new JButton("" + );
+                final int ii = i;
+                JButton remove = new JButton("X");
+                remove.addActionListener( new ActionListener(){
+                        public void actionPerformed( ActionEvent e ){
+                            RestaurantManager.restaurant.tables.get(tableIndex).receipt.itemList.remove(ii);
+                            RestaurantManager.serverPage.drawReceiptPanel();
+                        }
+                    }
+                );
+                c.gridx = 2;
+                c.gridy = i;
+                receiptPanel.add(remove, c);
             }
             
             JLabel subTotalLabel1 = new JLabel( "Sub Total: " );
@@ -161,6 +172,7 @@ class ServerPage{
             menuPanel.add( itemBtn, c );
         }
 
+        //ask are you sure (doesnt yet)
         JButton closeBill = new JButton("Close Bill");
         closeBill.setPreferredSize( buttonSize );
         closeBill.addActionListener( new ActionListener() {
@@ -173,6 +185,7 @@ class ServerPage{
         c.gridx = 0;
         c.gridy = i + 1;
         menuPanel.add( closeBill, c );
+        //ask are you sure (doesnt yet)
 
         JButton exit = new JButton("Exit");
         exit.setPreferredSize( buttonSize );
@@ -255,6 +268,14 @@ class ServerPage{
 
         JButton printReceiptBtn = new JButton("Print Receipt");
         printReceiptBtn.setPreferredSize(buttonSize);
+        printReceiptBtn.addActionListener( new ActionListener(){
+                public void actionPerformed( ActionEvent e ){
+                    RestaurantManager.printerPage.tableIndex = tableIndex;
+                    panel.setVisible(false);
+                    RestaurantManager.printerPage.panel.setVisible(true);
+                }
+            }
+        );
         c.gridx = 0;
         c.gridy = 2;
         closePanel.add( printReceiptBtn, c );
@@ -265,6 +286,10 @@ class ServerPage{
                 public void actionPerformed( ActionEvent e ){
                     RestaurantManager.restaurant.tables.get(tableIndex).receipt = new Receipt();
                     RestaurantManager.exitToHome( panel );
+                    
+                    menuCustomPane.setVisible(true);
+                    menuPane.setVisible(false);
+                    closePanel.setVisible(false);
                 }
             }
         );

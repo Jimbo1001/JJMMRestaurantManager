@@ -11,6 +11,8 @@ import javax.swing.*;
 
 public class Printer implements Printable {
 
+	String fileText = "";
+	
 	public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
 		String fulltext = "";
 		try {
@@ -77,18 +79,31 @@ public class Printer implements Printable {
 		return inch * 72d;
 	}
 
-	public static void main(String args[]) {
-		PrinterJob job = PrinterJob.getPrinterJob();
-		job.setPrintable(new Printer(), getPageFormat(job));
-		boolean ok = job.printDialog();
-		if (ok) {
-			try {
-				job.print();
-			} catch (PrinterException ex) {
-				/* The job did not successfully complete */
+	public void printFromFilePath(String str) {
+		// String filepath = "C:/Users/Mugdha Yada/Desktop/testfile.txt ";
+		fileText = "";
+		try {
+			FileReader fr = new FileReader("C:/Users/Mugdha Yada/Desktop/testfile.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String buffer;
+			while ((buffer = br.readLine()) != null) {
+				System.out.println(buffer);
+				fileText += System.lineSeparator() + buffer;
 			}
+			PrinterJob job = PrinterJob.getPrinterJob();
+			job.setPrintable(new Printer(), getPageFormat(job));
+			boolean ok = job.printDialog();
+			if (ok) {
+				try {
+					job.print();
+				} catch (PrinterException ex) {
+					/* The job did not successfully complete */
+				}
+			}
+                
+		} catch (Exception ex) {
+            
 		}
-
 	}
 
 }
